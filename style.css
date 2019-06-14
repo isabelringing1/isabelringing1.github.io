@@ -1,0 +1,95 @@
+html, body {
+  margin:0;
+  width:100%;
+  font-family: 'Nunito', sans-serif;
+  background-image: linear-gradient(#61C7D1, #FFC7D1);  
+  background-size:cover;
+}
+
+.title{
+  padding-top:90px;
+  text-align: center;
+  font-size: 75px;
+  font-family: 'Bungee', cursive;
+  color: #0d1120;
+}
+
+.cards{
+  padding:100px;
+  padding-top:40px;
+}
+
+.card{
+  margin-top:50px;
+}
+
+a{
+  color: #0d1120;
+}
+
+a:hover{
+  color: #0d1120;
+  text-decoration: none;
+}
+
+.link:hover { 
+  color:rgb(255, 148, 168);
+}
+
+.intext{
+  color:#61C7D1;
+}
+.about{
+  padding:100px;
+  padding-top:70px;
+  overflow: auto;
+  font-size:30px;
+}
+
+.explainer{
+  padding-top:30px;
+  padding-bottom:30px;
+  font-size:30px;
+  width:60%;
+  display: block; 
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+.me{
+  float:right;
+  padding-left:50px;
+}
+
+.hvr-box {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(5px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+}
+.hvr-box:hover, .hvr-box:focus, .hvr-box:active {
+  box-shadow: 15px -15px 0px rgb(255, 148, 168);
+}
+
+.hvr-border-fade {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
+.hvr-border-fade:hover, .hvr-border-fade:focus, .hvr-border-fade:active {
+  box-shadow: inset 0 0 0 4px #2098D1, 0 0 1px rgba(0, 0, 0, 0);
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
