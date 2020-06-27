@@ -15,7 +15,7 @@ html, body {
 }
 
 .cards{
-  padding:100px;
+  margin: auto;
   padding-top:40px;
 }
 
@@ -92,4 +92,62 @@ a:hover{
 .hvr-border-fade:hover, .hvr-border-fade:focus, .hvr-border-fade:active {
   box-shadow: inset 0 0 0 4px #2098D1, 0 0 1px rgba(0, 0, 0, 0);
   /* Hack to improve aliasing on mobile/tablet devices */
+}
+
+@media (min-width: 0px) { 
+  .card-columns{
+    column-count: 1;
+    text-align: center;
+  }
+  .cards{
+    padding-top:40px;
+  }
+}
+
+@media (min-width: 500px) {  
+  .card-columns{
+    column-count: 1;
+    text-align: center;
+    column-gap: 0.25rem;
+  }
+  .cards{
+    padding: 100px;
+    padding-top:40px;
+  }
+}
+ 
+@media (min-width: 1000px) {  
+  .card-columns{
+    column-count: 2;
+    text-align: center;
+    column-gap: 0.25rem;
+  }
+  .cards{
+    padding: 100px;
+    padding-top:40px;
+  }
+}
+ 
+@media (min-width: 1200px) { 
+  .card-columns{
+    column-count: 3;
+    text-align: center
+  }
+  .cards{
+    padding:100px;
+    padding-top:40px;
+  }
+}
+
+@media (max-width:  500px){
+  .title{
+    font-size: 60px;
+    padding-top:40px;
+  }
+  .link{
+    font-size: 30px;
+  }
+  .cards{
+    padding-top: 20px;
+  }
 }
