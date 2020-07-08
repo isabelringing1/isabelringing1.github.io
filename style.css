@@ -102,23 +102,6 @@ a:hover{
   .cards{
     padding-top:40px;
   }
-
-  .about{
-    width: 80%;
-    padding:0px;
-    margin:auto;
-  }
-
-  .explainer{
-    width: 80%;
-  }
-
-  .me{
-    float:none;
-    padding-left: 0px;
-    padding-bottom: 50px;
-    width: 100%;
-  }
 }
 
 @media (min-width: 500px) {  
@@ -167,5 +150,20 @@ a:hover{
   }
   .cards{
     padding-top: 20px;
+  }
+  .about{
+    width: 80%;
+    padding:0px;
+    margin:auto;
+  }
+  .explainer{
+    width: 80%;
+  }
+
+  .me{
+    float:none;
+    padding-left: 0px;
+    padding-bottom: 50px;
+    width: 100%;
   }
 }
