@@ -1,9 +1,10 @@
 html, body {
   margin:0;
   width:100%;
+  height:100%;
   font-family: 'Nunito', sans-serif;
   background-image: linear-gradient(#61C7D1, #FFC7D1);  
-  background-size:cover;
+  background-size: cover;
 }
 
 .title{
@@ -137,6 +138,12 @@ a:hover{
   .cards{
     padding:100px;
     padding-top:40px;
+  }
+}
+
+@media (min-width: 1800px) { 
+  .card-columns{
+    column-count: 4;
   }
 }
 
