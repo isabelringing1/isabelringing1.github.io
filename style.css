@@ -1,7 +1,7 @@
 html, body {
   margin:0;
   width:100%;
-  height:100%;
+  height: fit-content%;
   font-family: 'Nunito', sans-serif;
   background-image: linear-gradient(#61C7D1, #FFC7D1);  
   background-size: cover;
