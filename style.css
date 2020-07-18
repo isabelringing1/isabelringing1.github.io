@@ -40,10 +40,15 @@ a:hover{
 .intext{
   color:#61C7D1;
 }
+
 .about{
   padding:100px;
   padding-top:70px;
   overflow: auto;
+}
+
+.bio {
+  padding-top: 20px;
   font-size:30px;
 }
 
@@ -58,8 +63,10 @@ a:hover{
 }
 
 .me{
-  float:right;
-  padding-left:50px;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hvr-box {
@@ -130,7 +137,7 @@ a:hover{
   }
 }
  
-@media (min-width: 1200px) { 
+@media (min-width: 1400px) { 
   .card-columns{
     column-count: 3;
     text-align: center
