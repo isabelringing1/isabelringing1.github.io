@@ -42,14 +42,16 @@ a:hover{
 }
 
 .about{
-  padding:100px;
-  padding-top:70px;
-  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10vh;
+  padding: 0vh 12vw 0vh 12vw;
 }
 
 .bio {
-  padding-top: 0px;
-  font-size:30px;
+ font-size:30px;
+ width: 40vw;
+ padding-bottom: 10vh;
 }
 
 .explainer{
@@ -63,10 +65,11 @@ a:hover{
 }
 
 .me{
-  width: 50%;
+  width: 30vw;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  object-fit: contain;
 }
 
 .hvr-box {
@@ -169,6 +172,7 @@ a:hover{
     width: 80%;
     padding:0px;
     margin:auto;
+    flex-direction: column;
   }
   .explainer{
     width: 80%;
@@ -178,6 +182,11 @@ a:hover{
     float:none;
     padding-left: 0px;
     padding-bottom: 50px;
+    padding-top:50px;
     width: 100%;
+  }
+
+  .bio{
+    width: 90vw;
   }
 }
