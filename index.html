@@ -1,158 +1,25 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Other CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
-
-    <link rel="icon" type="image/png" href="images/rocket.png">
-    <!-- Personal CSS -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122824068-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-122824068-2');
-    </script>
-    
-    <title>Isabel Lee</title>
-  </head>
-
-  <body>
-    <div class="container-fluid title">
-    <a class="titleLink" href="index"> Isabel Lee </a>
-    <div style="font-size: 40px">
-        <a class="link" href="index">Stuff</a> &emsp; 
-        <a class="link" href="about">About</a> &emsp;
-        <a class="link" href="https://drive.google.com/file/d/1LMMG6wkSL7sFzevMYxE7FPuaBgYVlvn7pRfpuAolwaM/view">Resume</a>
-    </div>
-    </div>
-
-    <div class="cards card-columns">
-      <a href="https://isabellee.itch.io/turn-in-your-pset">
-        <div class="card hvr-box" style="width: 23rem;">
-          <img src="images/tiyp.png" class="card-img-top" alt="turn in your pset">
-          <div class="card-body">
-            <h5 class="card-title">Turn In Your Pset</h5>
-            <p class="card-text"> A short (~5 min) interactive fiction piece about graduating during a pandemic. 
-            </p>
-          </div>
+<html>
+    <head>
+        <title> isabel lee </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.0/mustache.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../main.js"></script>
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yaldevi:300">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sen">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter">
+        <link rel="icon" type="image/png" href="/images/favicon.ico">
+     </head>
+     <body>
+       <div id="header">
+         <a id="header-link" href>isabel lee</a>
+       </div>
+       <div id = "cards" style="display: none">
+         cards
+       </div>
+        <div id = "project">
+          projects
         </div>
-      </a>
-
-      <a href="http://clarkesworldmagazine.com/lee_03_21/">
-        <div class="card hvr-box" style="width: 23rem;">
-          <img src="images/cw_cover1.jpg" class="card-img-top" alt="55 Plaque">
-          <div class="card-body">
-            <h5 class="card-title">55 Plaque</h5>
-            <p class="card-text">Science fiction short story published in the March 2021
-              issue of Clarkesworld.</p>
-          </div>
-        </div>
-      </a>    
-
-      <a href="https://medium.com/@isabelringing1/moire-how-i-built-an-art-instillation-543233dbe1bd">
-        <div class="card hvr-box" style="width: 23rem;">
-          <img src="images/moire.jpeg" class="card-img-top" alt="moire">
-          <div class="card-body">
-            <h5 class="card-title">Moiré</h5>
-            <p class="card-text">Kinetic sculptures that induce dynamic optical illusions. 
-              An art installation built for and funded by one of Yale's residential colleges.
-            </p>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://isabel-senior-project.herokuapp.com/">
-        <div class="card hvr-box" style="width: 23rem;">
-          <img src="images/banner.png" class="card-img-top animated jello infinite" alt="segmented artwork">
-          <div class="card-body">
-            <h5 class="card-title">Our Bodies Are Art</h5>
-            <p class="card-text">An interactive examination of evolving female beauty standards through machine learning, computer vision, and classical art. Senior Project in CS, Fall 2020</p>
-          </div>
-        </div>
-      </a>
-
-      <a href="aiim">
-        <div class="card hvr-box" style="width: 23rem;">
-          <img src="images/aiim.png" class="card-img-top animated jello infinite" alt="aiim">
-          <div class="card-body">
-            <h5 class="card-title">AIIM</h5>
-            <p class="card-text">Experimental interactive long-form fiction about robots, group chats, and the end of the world</p>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://www.tdcommons.org/dpubs_series/3277/">
-          <div class="card hvr-box" style="width: 23rem;">
-            <img src="images/synesthetic_soundtrack.png" class="card-img-top animated jello infinite" alt="soundtrack">
-            <div class="card-body">
-              <h5 class="card-title">Synesthetic Soundtrack</h5>
-              <p class="card-text">Defensive publication based on technical explorations I did on 
-                a prototyping team at Google, Summer 2019. Computer vision and 
-                augmented reality leveraged to create immersive sonic landscapes. </p>
-            </div>
-          </div>
-        </a>
-
-    <a href="http://clarkesworldmagazine.com/lee_09_20/">
-      <div class="card hvr-box" style="width: 23rem;">
-        <img src="images/cw_cover.jpg" class="card-img-top" alt="Certainty">
-        <div class="card-body">
-          <h5 class="card-title">Certainty</h5>
-          <p class="card-text">Science fiction novelette published in the September 2020 
-            issue of Clarkesworld.</p>
-        </div>
-      </div>
-    </a>
-    
-    <a href="https://www.youtube.com/watch?v=_pTqgzdXP2s">
-      <div class="card hvr-box" style="width: 23rem;">
-        <img src="images/jpl.png" class="card-img-top" alt="jpl">
-        <div class="card-body">
-          <h5 class="card-title">Ranger VR</h5>
-          <p class="card-text">Implemented VR capabilities into a NASA-internal visual engine. 
-            Internship project from summer 2018 at JPL. </p>
-        </div>
-      </div>
-    </a>
-
-      <a href="art">
-      <div class="card hvr-box" style="width: 23rem;">
-        <img src="images/art/clouds.jpg" class="card-img-top" alt="art">
-        <div class="card-body">
-          <h5 class="card-title">Fine Art</h5>
-          <p class="card-text">Painting, digital art, sketches.</p>
-        </div>
-      </div>
-      </a>
-
-      <a href="brain">
-      <div class="card hvr-box" style="width: 23rem;">
-          <img src="images/brainar.png" class="card-img-top" alt="Brain AR">
-          <div class="card-body">
-            <h5 class="card-title">Brain AR</h5>
-            <p class="card-text">Built for use in the Yale School of Medicine's core curriculum.</p>
-          </div>
-        </div>
-      </a>
-
-    </div>
-    
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+     </body>
 </html>
