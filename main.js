@@ -27,7 +27,6 @@ function getProjectData(){
         for (var i = 0; i < data.art_captions.length; i++){
             artCaptionMap.set(data.art_captions[i].link, data.art_captions[i].title);
         }
-        console.log(artCaptionMap);
     });
 }
 
@@ -83,7 +82,6 @@ function renderCards(){
             while (card.className != "card-container"){
                 card = card.parentNode;
             }
-            console.log(card);
             renderProject(parseInt(card.id));
         });
         var cardContainers = $('.card-container');
@@ -109,6 +107,7 @@ function renderCards(){
                 currX += cardContainerWidth;
             }
         }
+        console.log(cardPositions);
 
         $("#about").click(function(){
             renderProject(-1);
@@ -253,12 +252,10 @@ function getWord(word, isFirst){
         }
         return "codes";
     }
-    console.log("Shouldn't be here!")
     return word;
 }
 
 function showTags(){
-    console.log(tags);
     if (tags.length == 0) {
         tags = [];
         resetTags();
@@ -288,7 +285,9 @@ function showTags(){
     for (var i = 0; i < shownCards.length; i++){
         $('#' + shownCards[i])[0].style.display = "block";
         $('#' + shownCards[i])[0].style.opacity = "1";
-        $('#' + shownCards[i])[0].style.marginLeft = cardPositions[i][0] + "px";
+        if (!mobile){
+            $('#' + shownCards[i])[0].style.marginLeft = cardPositions[i][0] + "px";
+        }
         $('#' + shownCards[i])[0].style.marginTop = cardPositions[i][1] + "px";
     }
 }
@@ -304,7 +303,9 @@ function resetTags(){
     for (var i = 0; i < cards.length; i++){
         cards[i].style.display = "block";
         cards[i].style.opacity = "1";
-        cards[i].style.marginLeft = cardPositions[i][0] + "px";
+        if (!mobile){
+            cards[i].style.marginLeft = cardPositions[i][0] + "px";
+        }
         cards[i].style.marginTop = cardPositions[i][1] + "px";
     }
 }
@@ -441,7 +442,6 @@ function setTagsBasedOnIntro(){
 }
 
 window.fadeIn = function(obj) {
-    console.log("fading in " + obj)
     obj.style.opacity = "1";
 }
 
@@ -458,8 +458,6 @@ $(function() {
     cardsPerRow = Math.floor((windowWidth- margin_left) / cardContainerMinWidth);
     if (cardsPerRow == 0) { cardsPerRow = 1; }
     getProjectData().then(() => {
-        console.log(map);
-        console.log(map.get(window.location.hash));
         if (window.location.hash && map.get(window.location.hash) != undefined){
             renderProject(map.get(window.location.hash));
         }
@@ -473,6 +471,5 @@ $(function() {
 });
 
 function configureMobile(){
-    console.log("Configuring mobile")
     mobile = true;
 }
