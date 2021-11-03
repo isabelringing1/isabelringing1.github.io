@@ -51,6 +51,9 @@ function renderProject(projectIndex){
         if (projectData.index == 0){
             configureArt();
         }
+        if (projectIndex == -1){
+            $("#project-image").attr("title", "pic creds: keaton");
+        }
     });
 }
 
@@ -107,7 +110,6 @@ function renderCards(){
                 currX += cardContainerWidth;
             }
         }
-        console.log(cardPositions);
 
         $("#about").click(function(){
             renderProject(-1);

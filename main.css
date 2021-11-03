@@ -149,6 +149,7 @@ a:hover {
 
 .drag-word:hover{
     color: var(--darkgray);
+    cursor: pointer;
 }
 
 #n{

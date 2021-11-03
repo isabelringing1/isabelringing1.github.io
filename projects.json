@@ -7,7 +7,7 @@
         "tags": ["art"],
         "card-description": "Fine art, sketches, web comics, and more.",
         "description": "I've been making art for most my life. My favorite mediums have been pencil and paper, digital art, and more recently, acrylic painting and ceramics.<br><br>This is an evolving selection of my favorite pieces. Click on each image for more information.",
-        "images": ["images/clouds.jpg", "images/comic.png", "images/tarot1.png", "images/tarot2.png"],
+        "images": ["images/clouds.jpg", "images/comic.png", "images/kortar1.png", "images/kortar2.png"],
         "image_alt": "My art"
     }, 
     {
@@ -142,11 +142,11 @@
         "title": "A Comic About Beauty, 2020. Digital Painting"
     },
     {
-        "link": "tarot1.png",
+        "link": "kortar1.png",
         "title": "해님 The Sun (Tarot Card #1), 2019. Digital Painting"
     },
     {
-        "link": "tarot2.png",
+        "link": "kortar2.png",
         "title": "달님 The Moon (Tarot Card #2), 2019. Digital Painting"
     }
     ]
