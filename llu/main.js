@@ -25,24 +25,6 @@ $(function() {
     document.addEventListener("dragover", function( event ) {
         event.preventDefault();
     }, false);
-
-    window.scroll = () => {
-        scrolling = true;
-        console.log( 'Scroll');
-    };
-
-    setInterval(() => {
-        if (scrolling) {
-            scrolling = false;
-            window.clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(function() {
-                console.log( 'Scrolling has stopped.');
-                console.log(documentBody.scrollTop);
-                console.log(documentBody.offsetHeight);
-            }, 66);
-        }
-    },300);
-
 });
 
 function goToCurrentPage(){
