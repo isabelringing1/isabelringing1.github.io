@@ -6,6 +6,7 @@ var percentToSwipe = 15;
 var pageHeight;
 var scrolling = false;
 var scrollTimeout;
+var isMoving = false;
 
 var currentPage = 0;
 
@@ -30,6 +31,7 @@ $(function() {
 });
 
 function goToCurrentPage(){
+    isMoving = true;
     var marginTop = parseInt($('#container')[0].style.marginTop.slice(0, -2));
     var targetMarginTop = currentPage * pageHeight * -1;
     var diff = targetMarginTop - marginTop;
@@ -37,6 +39,7 @@ function goToCurrentPage(){
     $('#container').animate({
         marginTop: '+=' + diff + 'px'
     }, 400);
+    setTimeout(() => {isMoving = false;}, 400);
 }
 
 // Event handling
@@ -45,20 +48,7 @@ function drag(ev) {
 }
 
 function dragEnd(ev) {
-    var difference = startingY - ev.pageY;
-    var percentDragged = 100 * (difference / screen.height);
-    console.log("percent dragged: " + percentDragged);
-    if (percentDragged > percentToSwipe && currentPage + 1 < images.length){
-        currentPage++;
-    }
-    else if (percentDragged < -percentToSwipe && currentPage != 0){
-        currentPage--;
-    }
-
-    lastY = -1;
-    startingY = -1;
-
-    goToCurrentPage();
+    moveEnd();
 }
 
 function touchMove(ev){
@@ -70,14 +60,13 @@ function touchEnd(ev){
 }
 
 function move(currentY){
-    if (lastY == -1){
+    if (isMoving) { return; }
+    else if (lastY == -1){
         lastY = currentY;
         startingY = currentY;
         return;
     }
-    else if (currentY == 0){
-        return;
-    }
+    else if (currentY == 0){ return; }
 
     var marginTop = parseInt($('#container')[0].style.marginTop.slice(0, -2));
 
@@ -107,3 +96,12 @@ function moveEnd(){
 
     goToCurrentPage();
 }
+
+$(function() {
+    $(window).bind('mousewheel', function(event, delta) {
+        move(-event.originalEvent.deltaY);
+        scrolling = true;
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {moveEnd()}, 300);
+    });
+});
