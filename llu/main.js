@@ -3,12 +3,12 @@ var images = ["bg.png", "bg.png", "bg.png"];
 var startingY = -1;
 var lastY = -1;
 var percentToSwipe = 15;
-var pageHeight;
 var scrolling = false;
 var scrollTimeout;
 var isMoving = false;
 
 var currentPage = 0;
+var pages =[];
 
 // On Page Load
 $(function() {
@@ -16,8 +16,8 @@ $(function() {
         var img = $('<img class = "image" id="image' + i + '" draggable="true">');
         img.attr('src', "../llu/images/" + images[i]);
         img.appendTo('#container');
+        pages.push(img);
     }
-    pageHeight = $('#image0')[0].height;
 
     document.addEventListener("drag", drag);
     document.addEventListener("dragend", dragEnd);
@@ -28,11 +28,14 @@ $(function() {
 
     document.addEventListener("touchmove", touchMove);
     document.addEventListener("touchend", touchEnd);
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
 });
 
 function goToCurrentPage(){
     isMoving = true;
     var marginTop = parseInt($('#container')[0].style.marginTop.slice(0, -2));
+    var pageHeight =  pages[currentPage][0].height;
     var targetMarginTop = currentPage * pageHeight * -1;
     var diff = targetMarginTop - marginTop;
     console.log(currentPage, targetMarginTop, marginTop, diff)
