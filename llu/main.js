@@ -20,11 +20,13 @@ $(function() {
 
     document.addEventListener("drag", drag);
     document.addEventListener("dragend", dragEnd);
-
     // magic function that makes dragend snappy
     document.addEventListener("dragover", function( event ) {
         event.preventDefault();
     }, false);
+
+    document.addEventListener("touchmove", touchMove);
+    document.addEventListener("touchend", touchEnd);
 });
 
 function goToCurrentPage(){
@@ -39,12 +41,41 @@ function goToCurrentPage(){
 
 // Event handling
 function drag(ev) {
+    move(ev.pageY);
+}
+
+function dragEnd(ev) {
+    var difference = startingY - ev.pageY;
+    var percentDragged = 100 * (difference / screen.height);
+    console.log("percent dragged: " + percentDragged);
+    if (percentDragged > percentToSwipe && currentPage + 1 < images.length){
+        currentPage++;
+    }
+    else if (percentDragged < -percentToSwipe && currentPage != 0){
+        currentPage--;
+    }
+
+    lastY = -1;
+    startingY = -1;
+
+    goToCurrentPage();
+}
+
+function touchMove(ev){
+    move(ev.touches[0].screenY);
+}
+
+function touchEnd(ev){
+    moveEnd();
+}
+
+function move(currentY){
     if (lastY == -1){
-        lastY = ev.pageY;
-        startingY = ev.pageY;
+        lastY = currentY;
+        startingY = currentY;
         return;
     }
-    else if (ev.pageY == 0){
+    else if (currentY == 0){
         return;
     }
 
@@ -54,14 +85,14 @@ function drag(ev) {
         marginTop = 0;
     }
 
-    marginTop += ev.pageY - lastY;
+    marginTop += currentY - lastY;
 
     $('#container')[0].style.marginTop =  marginTop + "px";
-    lastY = ev.pageY;
+    lastY = currentY;
 }
 
-function dragEnd(ev) {
-    var difference = startingY - ev.pageY;
+function moveEnd(){
+    var difference = startingY - lastY;
     var percentDragged = 100 * (difference / screen.height);
     console.log("percent dragged: " + percentDragged);
     if (percentDragged > percentToSwipe && currentPage + 1 < images.length){
