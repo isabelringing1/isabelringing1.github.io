@@ -11,6 +11,27 @@ html, body {
     margin-top: 0px;
 }
 
+.component{
+    position: relative;
+}
+
 .image{
+    position: relative;
+    z-index: 0;
     height: 100vh;
+
+}
+
+.overlay {
+    position: absolute;
+    height: 100vh;
+    z-index: -1;
+    left: 0;
+}
+
+.text {
+    position: absolute;
+    height: 100vh;
+    z-index: 1;
+    left: 0;
 }

@@ -1,0 +1,49 @@
+{
+    "data": [
+        {
+            "background": "bg.png",
+            "overlays": ["overlay1.png"],
+            "text": ["text1.png"]
+        },
+        {
+            "background": "bg.png",
+            "overlays": ["overlay2.1.png", "overlay2.2.png", "overlay2.3.png"],
+            "text": ["text2.png"]
+        },
+        {
+            "background": "bg.png",
+            "overlays": ["overlay3.1.png", "overlay3.2.png"],
+            "text": ["text3.png"]
+        },
+        {
+            "background": "bg.png",
+            "overlays": ["overlay4.png"],
+            "text": ["text4.png"]
+        },
+        {
+            "background": "bg.png",
+            "overlays": ["overlay5.1.png", "overlay5.2.png", "overlay5.3.png"],
+            "text": ["text5.png"]
+        },
+        {
+            "background": "bg.png",
+            "overlays": ["overlay6.png"],
+            "text": []
+        },
+        {
+            "background": "bg.png",
+            "overlays": ["overlay7.png"],
+            "text": []
+        },
+        {
+            "background": "bg.png",
+            "overlays": ["overlay8.png"],
+            "text": []
+        },
+        {
+            "background": "bg.png",
+            "overlays": ["overlay9.png"],
+            "text": []
+        }
+    ]
+}
