@@ -8,7 +8,7 @@ var scrolling = false;
 var scrollTimeout;
 var isMoving = false;
 var map;
-var swipeSlopeCutoff = 0.2;
+var swipeSlopeCutoff = 0.4;
 
 var currentPage = 0;
 var currentImage = 0;
@@ -98,7 +98,13 @@ function goToCurrentImage(){
 
 // Event handling
 function drag(ev) {
-    console.log(startingY, ev.pageY, startingX, ev.pageX)
+    if (lastY == -1){
+        lastY = ev.pageY;
+        startingY = ev.pageY;
+        lastX = ev.pageX;
+        startingX = ev.pageX;
+        return;
+    }
     var slope = ((startingY - ev.pageY)/(startingX - ev.pageX));
     console.log("slope: " + slope);
     if (slope > swipeSlopeCutoff || slope < -swipeSlopeCutoff){
@@ -113,7 +119,17 @@ function dragEnd(ev) {
 }
 
 function touchMove(ev){
-    moveY(ev.touches[0].screenY);
+    if (lastY == -1){
+        lastY = ev.touches[0].screenY;
+        startingY = ev.touches[0].screenY;
+        lastX = ev.touches[0].screenX;
+        startingX = ev.touches[0].screenX;
+        return;
+    }
+    var slope = ((startingY - ev.touches[0].screenY)/(startingX - ev.touches[0].screenX));
+    if (slope > swipeSlopeCutoff || slope < -swipeSlopeCutoff){
+        moveY(ev.touches[0].screenY);
+    }
     moveX(ev.touches[0].screenX);
 }
 
@@ -124,11 +140,6 @@ function touchEnd(ev){
 
 function moveY(currentY){
     if (isMoving) { return; }
-    else if (lastY == -1){
-        lastY = currentY;
-        startingY = currentY;
-        return;
-    }
     else if (currentY == 0){ return; }
 
     var marginTop = parseInt($('#container')[0].style.marginTop.slice(0, -2));
@@ -154,11 +165,6 @@ function moveY(currentY){
 function moveX(currentX){
     if (isMoving) { return; }
     else if (map.get(currentPage)[1].length == 1) { return; }
-    else if (lastX == -1){
-        lastX = currentX;
-        startingX = currentX;
-        return;
-    }
     var overlayDivId = "#overlayDiv" + currentPage;
     var overlayDivLeft = parseInt($(overlayDivId)[0].style.left.slice(0, -2));
 
