@@ -134,6 +134,14 @@ function moveY(currentY){
 
     marginTop += currentY - lastY;
 
+    /*
+    if (currentPage > 5){
+        if ($('#overlayDiv' + currentPage)[0].style.marginTop == ''){
+            $('#overlayDiv' + currentPage)[0].style.marginTop = 0;
+        }
+        $('#overlayDiv' + currentPage)[0].style.marginTop -= currentY - lastY;
+    }*/
+
     $('#container')[0].style.marginTop = marginTop + "px";
     lastY = currentY;
 }
