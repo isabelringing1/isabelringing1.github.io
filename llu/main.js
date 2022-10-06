@@ -1,12 +1,17 @@
 var startingY = -1;
 var lastY = -1;
-var percentToSwipe = 15;
+var startingX = -1;
+var lastX = -1;
+var percentToSwipeY = 15;
+var percentToSwipeX = 15;
 var scrolling = false;
 var scrollTimeout;
 var isMoving = false;
 var map;
 
 var currentPage = 0;
+var currentImage = 0;
+var totalImages = 0;
 var pages =[];
 
 // On Page Load
@@ -19,7 +24,7 @@ $(function() {
             var bg = data.data[i].background;
             var overlays = data.data[i].overlays;
             var text = data.data[i].text;
-            map.set(bg, [overlays, text]);
+            map.set(i, [bg, overlays, text]);
 
             var component = $('<div class = "component" id="component' + i + '" draggable="true">');
             component.appendTo('#container');
@@ -28,23 +33,24 @@ $(function() {
             img.attr('src', "../llu/images/" + bg);
             img.appendTo('#component' + i);
 
+            var overlayDiv = $('<div class = "overlayDiv" id="overlayDiv' + i + '" draggable="true">');
+            overlayDiv.appendTo('#component' + i);
             for (var j = 0; j < overlays.length; j++){
-                var overlay = $('<img class = "overlay" id="overlay' + i + "." + j + '">');
+                var overlay = $('<img class = "overlay" id="overlay' + i + "-" + j + '">');
                 overlay.attr('src', "../llu/images/" + overlays[j]);
-                overlay.appendTo('#component' + i);
-                console.log(overlay[0].width);
-                overlay[0].style.left += 450 * j;
+                overlay.appendTo('#overlayDiv' + i);
             }
-            for (var j = 0; j < text.length; j++){
+            if (typeof text !== 'undefined'){
                 var textOverlay = $('<img class = "text" id="text' + i + "." + j + '">');
-                textOverlay.attr('src', "../llu/images/" + text[j]);
+                textOverlay.attr('src', "../llu/images/" + text);
                 textOverlay.appendTo('#component' + i);
             }
-
             pages.push(img);
         }
         console.log(map);
+        totalImages = map.get(currentPage)[1].length;
     });
+
 
     document.addEventListener("drag", drag);
     document.addEventListener("dragend", dragEnd);
@@ -59,37 +65,59 @@ $(function() {
     document.addEventListener('contextmenu', event => event.preventDefault());
 });
 
-function goToCurrentPage(){
+function goToCurrentPage(needUpdate){
     isMoving = true;
+    if (needUpdate){
+        currentImage = 0;
+        totalImages = map.get(currentPage)[1].length;
+        console.log("Total images updated to " + totalImages);
+    }
     var marginTop = parseInt($('#container')[0].style.marginTop.slice(0, -2));
     var pageHeight =  pages[currentPage][0].height;
     var targetMarginTop = currentPage * pageHeight * -1;
     var diff = targetMarginTop - marginTop;
-    console.log(currentPage, targetMarginTop, marginTop, diff)
     $('#container').animate({
         marginTop: '+=' + diff + 'px'
     }, 400);
     setTimeout(() => {isMoving = false;}, 400);
 }
 
+function goToCurrentImage(){
+    var w = $("#overlay" + currentPage + "-0")[0].width;
+    console.log("image width: " + w);
+    isMoving = true;
+    var overlayDivLeft = parseInt($("#overlayDiv" + currentPage)[0].style.left.slice(0, -2));
+    var targetOverlayDivLeft = currentImage * w * -1;
+    var diff = targetOverlayDivLeft - overlayDivLeft;
+
+    $("#overlayDiv" + currentPage).animate({
+        left: '+=' + diff + 'px'
+    }, 400);
+    setTimeout(() => {isMoving = false;}, 400);
+}
+
 // Event handling
 function drag(ev) {
-    move(ev.pageY);
+    moveY(ev.pageY);
+    moveX(ev.pageX);
 }
 
 function dragEnd(ev) {
-    moveEnd();
+    moveYEnd();
+    moveXEnd();
 }
 
 function touchMove(ev){
-    move(ev.touches[0].screenY);
+    moveY(ev.touches[0].screenY);
+    moveX(ev.touches[0].screenX);
 }
 
 function touchEnd(ev){
-    moveEnd();
+    moveYEnd();
+    moveXEnd();
 }
 
-function move(currentY){
+function moveY(currentY){
     if (isMoving) { return; }
     else if (lastY == -1){
         lastY = currentY;
@@ -106,32 +134,72 @@ function move(currentY){
 
     marginTop += currentY - lastY;
 
-    $('#container')[0].style.marginTop =  marginTop + "px";
+    $('#container')[0].style.marginTop = marginTop + "px";
     lastY = currentY;
 }
 
-function moveEnd(){
+function moveX(currentX){
+    if (isMoving) { return; }
+    else if (map.get(currentPage)[1].length == 1) { return; }
+    else if (lastX == -1){
+        lastX = currentX;
+        startingX = currentX;
+        return;
+    }
+    var overlayDivId = "#overlayDiv" + currentPage;
+    var overlayDivLeft = parseInt($(overlayDivId)[0].style.left.slice(0, -2));
+
+    if (isNaN(overlayDivLeft)){
+        overlayDivLeft = 0;
+    }
+
+    overlayDivLeft += currentX - lastX;
+    $(overlayDivId)[0].style.left = overlayDivLeft + "px";
+    lastX = currentX;
+}
+
+function moveYEnd(){
     var difference = startingY - lastY;
     var percentDragged = 100 * (difference / screen.height);
-    console.log("percent dragged: " + percentDragged);
-    if (percentDragged > percentToSwipe && currentPage + 1 < pages.length){
+    var changedPage = false;
+    if (percentDragged > percentToSwipeY && currentPage + 1 < pages.length){
         currentPage++;
+        changedPage = true;
     }
-    else if (percentDragged < -percentToSwipe && currentPage != 0){
+    else if (percentDragged < -percentToSwipeY && currentPage != 0){
         currentPage--;
-    }
+        changedPage = true;
 
+    }
     lastY = -1;
     startingY = -1;
+    goToCurrentPage(changedPage);
+}
 
-    goToCurrentPage();
+function moveXEnd(){
+    var ov = $("#overlay" + currentPage + "-0")[0];
+    var difference = startingX - lastX;
+    var percentDragged = 100 * (difference / ov.width);
+    console.log(difference, ov.width, percentDragged);
+    if (percentDragged > percentToSwipeX && currentImage + 1 < totalImages){
+        currentImage++;
+        console.log("current image + " + currentImage);
+    }
+    else if (percentDragged < -percentToSwipeX && currentImage != 0){
+        currentImage--;
+        console.log("current image - " + currentImage);
+    }
+
+    lastX = -1;
+    startingX = -1;
+    goToCurrentImage();
 }
 
 $(function() {
     $(window).bind('mousewheel', function(event, delta) {
-        move(-event.originalEvent.deltaY);
+        moveY(-event.originalEvent.deltaY);
         scrolling = true;
         clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {moveEnd()}, 300);
+        scrollTimeout = setTimeout(() => {moveYEnd()}, 300);
     });
 });
