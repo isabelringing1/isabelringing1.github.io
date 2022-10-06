@@ -8,6 +8,7 @@ var scrolling = false;
 var scrollTimeout;
 var isMoving = false;
 var map;
+var swipeSlopeCutoff = 0.2;
 
 var currentPage = 0;
 var currentImage = 0;
@@ -50,8 +51,7 @@ $(function() {
         console.log(map);
         totalImages = map.get(currentPage)[1].length;
     });
-
-
+    
     document.addEventListener("drag", drag);
     document.addEventListener("dragend", dragEnd);
     // magic function that makes dragend snappy
@@ -98,7 +98,12 @@ function goToCurrentImage(){
 
 // Event handling
 function drag(ev) {
-    moveY(ev.pageY);
+    console.log(startingY, ev.pageY, startingX, ev.pageX)
+    var slope = ((startingY - ev.pageY)/(startingX - ev.pageX));
+    console.log("slope: " + slope);
+    if (slope > swipeSlopeCutoff || slope < -swipeSlopeCutoff){
+        moveY(ev.pageY);
+    }
     moveX(ev.pageX);
 }
 
