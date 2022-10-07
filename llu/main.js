@@ -95,15 +95,14 @@ function goToCurrentImage(){
     var overlayDivLeft = parseInt($("#overlayDiv" + currentPage)[0].style.left.slice(0, -2));
     var targetOverlayDivLeft = currentImage * w * -1;
     var diff = targetOverlayDivLeft - overlayDivLeft;
-
+    if (dots[totalImages-1] != null){
+        $('#dot' + currentPage).attr('src', "../llu/images/" + dots[totalImages-1][currentImage]);
+    }
     $("#overlayDiv" + currentPage).animate({
         left: '+=' + diff + 'px'
     }, 400);
     setTimeout(() => {
         isMoving = false;
-        if (dots[totalImages-1] != null){
-            $('#dot' + currentPage).attr('src', "../llu/images/" + dots[totalImages-1][currentImage]);
-        }
     }, 400);
 }
 
