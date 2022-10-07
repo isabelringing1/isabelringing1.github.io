@@ -44,3 +44,10 @@ html, body {
     z-index: 1;
     left: 0;
 }
+
+.dots{
+    position: absolute;
+    height: 100vh;
+    z-index: 1;
+    left: 0;
+}

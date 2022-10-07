@@ -15,6 +15,8 @@ var currentImage = 0;
 var totalImages = 0;
 var pages =[];
 
+var dots = [null, ['dots2-1.png', 'dots2-2.png'], ['dots3-1.png', 'dots3-2.png', 'dots3-3.png']];
+
 // On Page Load
 $(function() {
     $.getJSON('data.json', function(jsonData, status, xhr){
@@ -46,6 +48,8 @@ $(function() {
                 textOverlay.attr('src', "../llu/images/" + text);
                 textOverlay.appendTo('#component' + i);
             }
+            var dots = $('<img class = "dots" id="dot' + i + '">');
+            dots.appendTo('#component' + i);
             pages.push(img);
         }
         console.log(map);
@@ -70,7 +74,9 @@ function goToCurrentPage(needUpdate){
     if (needUpdate){
         currentImage = 0;
         totalImages = map.get(currentPage)[1].length;
-        console.log("Total images updated to " + totalImages);
+        if (dots[totalImages-1] != null){
+            $('#dot' + currentPage).attr('src', "../llu/images/" + dots[totalImages-1][0]);
+        }
     }
     var marginTop = parseInt($('#container')[0].style.marginTop.slice(0, -2));
     var pageHeight =  pages[currentPage][0].height;
@@ -93,7 +99,12 @@ function goToCurrentImage(){
     $("#overlayDiv" + currentPage).animate({
         left: '+=' + diff + 'px'
     }, 400);
-    setTimeout(() => {isMoving = false;}, 400);
+    setTimeout(() => {
+        isMoving = false;
+        if (dots[totalImages-1] != null){
+            $('#dot' + currentPage).attr('src', "../llu/images/" + dots[totalImages-1][currentImage]);
+        }
+    }, 400);
 }
 
 // Event handling
