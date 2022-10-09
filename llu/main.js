@@ -8,7 +8,9 @@ var scrolling = false;
 var scrollTimeout;
 var isMoving = false;
 var map;
-var swipeSlopeCutoff = 0.4;
+var swipeSlopeLowerBound = 0.4;
+var swipeSlopeUpperBound = 1.3;
+
 
 var currentPage = 0;
 var currentImage = 0;
@@ -117,7 +119,7 @@ function drag(ev) {
     }
     var slope = ((startingY - ev.pageY)/(startingX - ev.pageX));
     console.log("slope: " + slope);
-    if (slope > swipeSlopeCutoff || slope < -swipeSlopeCutoff){
+    if (slope > swipeSlopeLowerBound || slope < -swipeSlopeLowerBound){
         moveY(ev.pageY);
     }
     moveX(ev.pageX);
@@ -137,10 +139,12 @@ function touchMove(ev){
         return;
     }
     var slope = ((startingY - ev.touches[0].screenY)/(startingX - ev.touches[0].screenX));
-    if (slope > swipeSlopeCutoff || slope < -swipeSlopeCutoff){
+    if (slope > swipeSlopeLowerBound || slope < -swipeSlopeLowerBound){
         moveY(ev.touches[0].screenY);
     }
-    moveX(ev.touches[0].screenX);
+    if (slope < swipeSlopeUpperBound || slope > -swipeSlopeUpperBound){
+        moveX(ev.touches[0].screenX);
+    }
 }
 
 function touchEnd(ev){
