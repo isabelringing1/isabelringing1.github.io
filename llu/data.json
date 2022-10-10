@@ -38,7 +38,7 @@
             "overlays": ["overlay8.png"]
         },
         {
-            "background": "bg.png",
+            "background": "bgEnd.png",
             "overlays": ["overlay9.png"]
         }
     ]

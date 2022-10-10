@@ -54,7 +54,6 @@ $(function() {
             dots.appendTo('#component' + i);
             pages.push(img);
         }
-        console.log(map);
         totalImages = map.get(currentPage)[1].length;
     });
     
@@ -68,7 +67,9 @@ $(function() {
     document.addEventListener("touchmove", touchMove);
     document.addEventListener("touchend", touchEnd);
 
-    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('contextmenu', event => event.preventDefault());    
+
+    window.addEventListener('keydown', onKeyDown)
 });
 
 function goToCurrentPage(needUpdate){
@@ -81,6 +82,7 @@ function goToCurrentPage(needUpdate){
         }
     }
     var marginTop = parseInt($('#container')[0].style.marginTop.slice(0, -2));
+    if (isNaN(marginTop)) {marginTop = 0}
     var pageHeight =  pages[currentPage][0].height;
     var targetMarginTop = currentPage * pageHeight * -1;
     var diff = targetMarginTop - marginTop;
@@ -92,9 +94,9 @@ function goToCurrentPage(needUpdate){
 
 function goToCurrentImage(){
     var w = $("#overlay" + currentPage + "-0")[0].width;
-    console.log("image width: " + w);
     isMoving = true;
     var overlayDivLeft = parseInt($("#overlayDiv" + currentPage)[0].style.left.slice(0, -2));
+    if (isNaN(overlayDivLeft)) {overlayDivLeft = 0}
     var targetOverlayDivLeft = currentImage * w * -1;
     var diff = targetOverlayDivLeft - overlayDivLeft;
     if (dots[totalImages-1] != null){
@@ -118,7 +120,6 @@ function drag(ev) {
         return;
     }
     var slope = ((startingY - ev.pageY)/(startingX - ev.pageX));
-    console.log("slope: " + slope);
     if (slope > swipeSlopeLowerBound || slope < -swipeSlopeLowerBound){
         moveY(ev.pageY);
     }
@@ -164,14 +165,6 @@ function moveY(currentY){
 
     marginTop += currentY - lastY;
 
-    /*
-    if (currentPage > 5){
-        if ($('#overlayDiv' + currentPage)[0].style.marginTop == ''){
-            $('#overlayDiv' + currentPage)[0].style.marginTop = 0;
-        }
-        $('#overlayDiv' + currentPage)[0].style.marginTop -= currentY - lastY;
-    }*/
-
     $('#container')[0].style.marginTop = marginTop + "px";
     lastY = currentY;
 }
@@ -213,14 +206,11 @@ function moveXEnd(){
     var ov = $("#overlay" + currentPage + "-0")[0];
     var difference = startingX - lastX;
     var percentDragged = 100 * (difference / ov.width);
-    console.log(difference, ov.width, percentDragged);
     if (percentDragged > percentToSwipeX && currentImage + 1 < totalImages){
         currentImage++;
-        console.log("current image + " + currentImage);
     }
     else if (percentDragged < -percentToSwipeX && currentImage != 0){
         currentImage--;
-        console.log("current image - " + currentImage);
     }
 
     lastX = -1;
@@ -236,3 +226,32 @@ $(function() {
         scrollTimeout = setTimeout(() => {moveYEnd()}, 300);
     });
 });
+
+function onKeyDown(event){
+    if (event == undefined) {return;}
+    if(event.keyCode == 40) { //down
+        if (currentPage + 1 < pages.length){
+            currentPage++;
+            goToCurrentPage(true);
+        }
+    }
+    else if (event.keyCode == 38){ //up
+        if (currentPage != 0){
+            currentPage--;
+            goToCurrentPage(true);
+        }
+        
+    }
+    else if (event.keyCode == 39){ //right
+        if (currentImage + 1 < totalImages){
+            currentImage++;
+            goToCurrentImage();
+        }
+    }
+    else if (event.keyCode == 37){ //left
+        if (currentImage != 0){
+            currentImage--;
+            goToCurrentImage();
+        }
+    }
+}
