@@ -3,7 +3,7 @@ var lastY = -1;
 var startingX = -1;
 var lastX = -1;
 var percentToSwipeY = 15;
-var percentToSwipeX = 15;
+var percentToSwipeX = 10;
 var scrolling = false;
 var scrollTimeout;
 var isMoving = false;
