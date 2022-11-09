@@ -1,0 +1,22 @@
+div{
+    font-size: 55;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#text{
+  
+}
+
+#photos{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    display: flex;
+    justify-content: right;
+    z-index: -100;
+}
+
+#photo{
+    height: 80vh;
+    top: 10vh;
+}
