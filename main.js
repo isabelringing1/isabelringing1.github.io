@@ -10,7 +10,7 @@ var hasDragged = false;
 var cardsPerRow;
 var margin_left = 70;
 var cardContainerMinWidth = 450;
-var cardContainerHeight = 500;
+var cardContainerHeight = 550;
 var tags = [];
 
 function getProjectData(){
@@ -118,7 +118,8 @@ function renderCards(){
                     cardPositions[i] = [currX, currY];
                 }
                 else{
-                    cardPositions[i] = [margin_left, currY];
+                    cardContainer.style.marginLeft = (currX/2) + "px";
+                    cardPositions[i] = [currX/2, currY];
                 }
                 cardContainer.style.marginTop = currY + "px";
 
