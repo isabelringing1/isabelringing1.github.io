@@ -11,7 +11,6 @@ var cardsPerRow;
 var margin_left = 70;
 var cardContainerMinWidth = 450;
 var cardContainerHeight = 500;
-
 var tags = [];
 
 function getProjectData(){
@@ -115,13 +114,13 @@ function renderCards(){
             for (var i = 0; i < cardContainers.length; i++){
                 cardContainer = cardContainers[i];
                 if (!mobile){
-                    cardContainer.style.marginLeft = currX;
+                    cardContainer.style.marginLeft = currX + "px";
                     cardPositions[i] = [currX, currY];
                 }
                 else{
                     cardPositions[i] = [margin_left, currY];
                 }
-                cardContainer.style.marginTop = currY;
+                cardContainer.style.marginTop = currY + "px";
 
                 if ((i + 1) % cardsPerRow == 0){
                     currX = margin_left;
