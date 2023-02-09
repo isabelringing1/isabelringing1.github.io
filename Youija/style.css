@@ -21,3 +21,11 @@ body{
 #plancette{
     position: absolute;
 }
+
+#text{
+    font-size: 16pt;
+}
+
+button{
+    margin-left: 30px;
+}

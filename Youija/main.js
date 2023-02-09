@@ -52,15 +52,31 @@ var dict = {
     moon: [94.2, 13.23]
 };
 
+var questions = [
+    "Is there any spirit or entity present with us right now?",
+    "What is your name?",
+    "Are you from this world or from the afterlife?",
+    "What is your purpose for communicating with us?",
+    "Can you give us a message from someone who has passed away?",
+    "Are you a benevolent spirit or an evil one?",
+    "What can you tell us about our future?",
+    "Is there anything you would like us to know?",
+    "Can you give us a sign of your presence?",
+    "Do you have a final message before we end this session?"
+]
+
 window.onload = (event) => {
     document.getElementById("background").addEventListener('mousemove', onMouseMove);
     addEventListener('mouseout', onMouseOut);
     document.getElementById("background").addEventListener('click', onClick);
+    document.getElementById("generator").addEventListener('click', GenerateQuestion);
+    document.getElementById("reset").addEventListener('click', Reset);
     targetPos = [0, 0];
     planchettePos = [0, 0];
     planchetteXOffset = -158;
     planchetteYOffset = -150;
     animatePlanchette();
+    GenerateQuestion();
 };
 
 
@@ -144,3 +160,11 @@ function GetRandomNumber (max){
     return Math.floor(Math.random() * max);
 }
 
+function GenerateQuestion(){
+    $('#question-text')[0].innerHTML = questions[GetRandomNumber(questions.length)];
+    Reset();
+}
+
+function Reset(){
+    $('#answer-text')[0].innerHTML= "";
+}
