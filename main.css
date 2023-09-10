@@ -1,24 +1,23 @@
 :root {
     --background: #FFF3E1;
     --primary: #4F38DF;
-    --secondary: #DAAAF6;
+    --secondary: #c48de2;;
     --gray: #979797;
     --darkgray: #6F6F6F;
     --art: #f530a5;
     --code: #6098ef;
     --writing: #5fdb75;
-    --header: #464646;
   }
 
 /* mobile */
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 630px) {
     :root {
         --margin-left: 30px;
-        --margin-right: 30px;
     }
 
     .card{
         width: 90%;
+        height: 520px;
     }
 
     .card-image{
@@ -27,7 +26,9 @@
     }
 
     #title{
-        font-size: 35px;
+        font-size: 50px;
+        text-align: center;
+        padding-top: 40px;
     }
 
     #project-body{
@@ -55,35 +56,20 @@
         width: 90%;
     }
 
-    #header-name{
-        font-size: 60px;
-    }
-
     #header{
         flex-direction: column;
         align-items: center;
     }
 
-    #header-links{
+    #links{
         text-align: center;
-        font-size: 30px;
     }
-
-    .image{
-        margin-bottom: 30px;
-    }    
-
-    #logo{
-        height: 140px;
-    }
-     
 }
 
 /* tablet/desktop */
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 631px) {
     :root {
         --margin-left: 70px;
-        --margin-right: 70px;
     }
 
     .card{
@@ -96,10 +82,6 @@
         height: 370px;
     }
 
-    .card-container{
-        margin: 30px 0 30px 30px;
-     }
-
     #title{
         font-size: 60px;
         text-align: left;
@@ -108,12 +90,12 @@
 
     #project-body{
         flex-direction: row;
-        margin-top: 40px;
+        margin-top: 70px;
     }
 
     #description{
         padding: 0 0 0 0px;
-        font-size: 30px;
+        font-size: 25px;
         width: 50%;
     }
 
@@ -130,60 +112,14 @@
     }
 
     #header{
-        justify-content: space-between;
         align-items: end;
-        margin: 40px var(--margin-right) 0px var(--margin-left);
+        justify-content: center;
     }
 
-    #header-name{
-        font-size: 80px;
-    }
-
-    #header-links{
+    #links{
         text-align: right;
-        font-size: 48px;
-    }   
-
-    #cards{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 3vh;
-    }
-
-    .big-card{
-        width: 60vw;
-    }
-
-    .big-card-words{
-        width: 40vw;
-    }
-
-    .big-card-description{
-        font-size: 22px;
-    }
-
-    .image{
-        margin-bottom: 80px;
-    }
-    
-    .cards{
-        margin-top: 2%;
-    }
-}
-
-/* big desktop */
-@media only screen and (min-width: 1400px) {
-    .big-card{
-        width: 50vw;
-    }
-
-    .big-card-words{
-        width: 50vw;
-    }
-
-    .big-card-description{
-        font-size: 25px;
+        position: absolute;
+        right: 70px;
     }
 }
 
@@ -207,34 +143,39 @@ a:hover {
 }
 
 #header{
-    font-family: "Urbanist";
+    font-family: "Sen";
+    font-size:48px;
+    margin: 40px 40px 0px var(--margin-left);
+    color: #c87aea;
     display: flex;
 }
 
-#header a {
-    color: var(--header);
+
+#intro{
+    margin: 20px 0px 40px var(--margin-left);
+    font-family: "Yaldevi";
+    font-size: 50px;
 }
 
-.drag-word{
-    transition: transform 1s ease-in-out;
-    color: var(--gray);
-}
-
-.drag-word:hover{
-    color: var(--darkgray);
-    cursor: pointer;
+#intro-text {
+    width: 80%;
 }
 
 #n{
     display: none;
 }
 
-#about:hover{
-    text-decoration: underline;
+#header-link{
+    transition: none;
+    color: #c87aea;
 }
 
-#itp:hover{
-    text-decoration: underline;
+#about:hover{   
+    color: #2C19ADFF;
+}
+
+#header-link:hover{
+    color: #2C19ADFF;
 }
 
 #cards{
@@ -244,6 +185,7 @@ a:hover {
 .card-container{
    padding-bottom: 50px;
    position: absolute;
+   margin: 30px 0 30px 30px;
    transition: margin-left 0.5s ease-in-out, margin-top 0.5s ease-in-out, opacity 0.25s;
 }
 
@@ -262,13 +204,13 @@ a:hover {
 
 .card-description{
     margin: 0 15px 10px 15px;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 .card-title{
     margin: 15px 15px 7px 15px;
     font-size: 28px;
-    font-family: "Urbanist";
+    font-family: "Sen";
 }
 
 .card-image{
@@ -276,49 +218,6 @@ a:hover {
     margin: 15px 15px 0 15px;
     border-style: solid;
     border-width: 1px;
-}
-
-.big-card-container{
-    padding-bottom: 50px;
-    margin: 0 0 50px 0;
-    transition: margin-left 0.5s ease-in-out, margin-top 0.5s ease-in-out, opacity 0.25s;
- }
-
-.big-card{
-    background-color: white;
-    color: var(--header);
-    transition: box-shadow 0.2s ease-in-out;
-    box-shadow: 4px 4px var(--secondary);
-    border-style: solid;
-    border-width: 2px;
-    height: 300px;
-    display: flex;
-}
-
-.big-card:hover {
-    box-shadow: 10px 10px var(--secondary);
-}
-
-.big-card-image{
-    object-fit: cover;
-    margin: 15px 15px 0 15px;
-    width: 270px;
-    height: 270px;
-}
-
-.big-card-title{
-    margin: 15px 15px 7px 0px;
-    font-size: 35px;
-    font-family: "Urbanist";
-}
-
-.big-card-description{
-    margin: 0 15px 10px 0px;
-    line-height: 1.4;
-}
-
-.big-card-words{
-    margin-top: 0vh;
 }
 
 .tags{
@@ -335,9 +234,8 @@ a:hover {
     font-family: "Bitter";
     font-size: 24px;
     flex-direction: row;
-    margin: 0 var(--margin-right) 0 var(--margin-left);
+    margin: 0 20px 0 var(--margin-left);
     color: var(--gray);
-    text-align: center;
 }
 
 .selected{
@@ -350,7 +248,8 @@ a:hover {
 }
 
 .bar{
-    width: 100%;
+    width: 40%;
+    align-items: center;
     background-color: var(--primary);
 }
 
@@ -361,11 +260,12 @@ a:hover {
 
 #title {
     display: flex;
+    justify-content: center;
     align-items: center;
     color: var(--primary);
     text-shadow: -4px 4px var(--secondary);
     margin-bottom: 10px;
-    font-family: "Urbanist";
+    font-family: "Sen";
 }
 
 #project-body{
@@ -393,6 +293,7 @@ a:hover {
     filter: drop-shadow(25px 25px var(--secondary));
     border-style: solid;
     border-width: 2px;
+    margin-bottom: 80px;
 }
 
 #back-button{

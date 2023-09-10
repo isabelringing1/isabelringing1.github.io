@@ -4,14 +4,11 @@ var artCaptionMap;
 var mobile = false;
 var cardPositions = [];
 var windowWidth;
-var isEmphasized = false;
-var hasDragged = false;
 
 var cardsPerRow;
-var margin_left = 70;
-var cardContainerMinWidth = 450;
-var cardContainerHeight = 550;
-var tags = [];
+var margin_left = 40;
+var cardContainerMinWidth = 430;
+var cardContainerHeight = 610;
 
 function getProjectData(){
     return $.getJSON('projects.json', function(jsonData, status, xhr){
@@ -43,17 +40,17 @@ function renderProject(projectIndex){
     }
 
     fetch('project.mustache')
-    .then((response) => response.text())
-    .then((template) => {
-        var rendered = Mustache.render(template, projectData);
-        $('#project')[0].innerHTML = rendered;
-        if (projectData.index == 0){
-            configureArt();
-        }
-        if (projectIndex == -1){
-            $("#project-image").attr("title", "pic creds: keaton");
-        }
-    });
+        .then((response) => response.text())
+        .then((template) => {
+            var rendered = Mustache.render(template, projectData);
+            $('#project')[0].innerHTML = rendered;
+            if (projectData.index == 0){
+                configureArt();
+            }
+            if (projectIndex == -1){
+                $("#project-image").attr("title", "pic creds: keaton");
+            }
+        });
 }
 
 function configureArt(){
@@ -71,31 +68,10 @@ function configureArt(){
 }
 
 function renderCards(){
+    $('#cards')[0].style.display = "block";
     $('#project')[0].style.display = "none";
 
-    if (!mobile) {
-        $('#cards')[0].style.display = "flex";
-        fetch('big-cards.mustache')
-        .then((response) => response.text())
-        .then((template) => {
-            var rendered = Mustache.render(template, data);
-            $('#cards')[0].innerHTML = rendered;
-            $('.big-card').on('click', (event) => {
-                card = event.target;
-                while (card.className != "big-card-container"){
-                    card = card.parentNode;
-                }
-                renderProject(parseInt(card.id));
-            });
-
-            $("#about").click(function(){
-                renderProject(-1);
-            })
-        });
-    }
-    else {
-        $('#cards')[0].style.display = "block";
-        fetch('cards.mustache')
+    fetch('cards.mustache')
         .then((response) => response.text())
         .then((template) => {
             var rendered = Mustache.render(template, data);
@@ -125,27 +101,18 @@ function renderCards(){
 
                 if ((i + 1) % cardsPerRow == 0){
                     currX = margin_left;
-                    currY += cardContainerHeight;
+                    currY += mobile ? cardContainerHeight - 30 : cardContainerHeight;
                 }
                 else{
                     currX += cardContainerWidth;
                 }
             }
 
-            $("#about").click(function(){
-                renderProject(-1);
-            })
+            $("#logo").click(function(){
+                renderCards();
+            });
         });
-    }
-    
 }
-
-function setDisplayNoneTimeout(el){
-    setTimeout(function() {
-        el.style.display = "none";
-    }, 250);
-}
-
 
 window.fadeIn = function(obj) {
     obj.style.opacity = "1";
@@ -157,12 +124,24 @@ window.onhashchange = function() {
     }
 }
 
+window.onresize = function(){
+    if (window.location.hash === ""){
+        windowWidth = $(window).width();
+        cardsPerRow = Math.floor((windowWidth- margin_left) / cardContainerMinWidth);
+        renderCards();
+    }
+}
+
 // On Page Load
 $(function() {
     windowWidth = $(window).width();
-    if (windowWidth < 850) { configureMobile(); }
+    if (windowWidth < 631) { configureMobile(); }
     cardsPerRow = Math.floor((windowWidth- margin_left) / cardContainerMinWidth);
     if (cardsPerRow == 0) { cardsPerRow = 1; }
+    $("#about").click(function(){
+        console.log("Rendering about")
+        renderProject(-1);
+    });
     getProjectData().then(() => {
         if (window.location.hash && map.get(window.location.hash) != undefined){
             renderProject(map.get(window.location.hash));
