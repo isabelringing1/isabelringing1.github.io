@@ -59,7 +59,7 @@
         "title": "Moiré",
         "hash": "#moire",
         "tags": ["art", "tech"],
-        "card-description": "Kinetic sculptures that induce dynamic optical illusions. An art installation built for and funded by one of Yale's residential colleges.",
+        "card-description": "Kinetic sculptures that induce dynamic optical illusions. Art installation built for & funded by one of Yale's residential colleges.",
         "description": "<a href='https://medium.com/@isabelringing1/moire-how-i-built-an-art-instillation-543233dbe1bd' target='_blank'>Moiré</a> is a series of kinetic sculptures I built as an art installation in Spring 2019, funded by a Creative and Performing Arts grant from Yale University.<br><br>Inspired by the work of artists such as <a href='http://www.smoothware.com/danny/'>Danny Rozin</a>, I wanted to create a surprising and dynamic work of art while building skills such as laser printing, arduino programming, and more. <br><br>I wrote in-depth about my inspiration, process, and takeaways in this <a href='https://medium.com/@isabelringing1/moire-how-i-built-an-art-instillation-543233dbe1bd' target='_blank'>Medium article</a>, so I highly recommend reading that as well!",
         "images": ["images/moire.jpeg"],
         "image_alt": "Moire image",
@@ -149,7 +149,7 @@
         "hash": "#sound-garden-playground",
         "tags": ["art", "tech"],
         "card-description": "A music-making interactive designed for accessible musical collaboration",
-        "description": "<a href = 'https://isabellee.itch.io/everything-not-saved' target='_blank'>\"Everything Not Saved\"</a> is a short game about cleaning the desk of your childhood bedroom. It was built in a few weeks with Unity and using real items from my childhood bedroom, scanned with <a href='https://poly.cam/' target='_blank'>Polycam</a>.<br><br>It's hosted on Itch.io, where you can read my project statement and experience it for yourself!",
+        "description": "<a href = 'https://itp.nyu.edu/shows/spring2023/projects/#10225-sound-garden-playground' target='_blank'>\"Sound Garden Playground\"</a> is a interactive, collaborative project that creates a semi-structured music-making environment, encouraging visitors to play within an ephemeral looping format with a subset of tones. It is designed to spark spontaneous collaboration and connection, and lower the barrier to engaging in collaborative musical experimentation.<br><br>Made in collaboration with Alexandra Palocz for the ITP class Cabinets of Wonder, I was in charge of programming the visual interface in Unity, as well as making the art assets you see in game. The project was showcased in the <a href = 'https://itp.nyu.edu/shows/spring2023/' target='_blank'>ITP Spring Show 2023</a>",
         "images": ["images/sound-garden.png"],
         "image_alt": "Cover for Sound Garden Playground",
         "target-link": "https://itp.nyu.edu/shows/spring2023/projects/#10225-sound-garden-playground"
@@ -171,9 +171,9 @@
         "index": -1,
         "title": "About",
         "hash": "#about",
-        "description": "Hi, I'm Isabel! Currently, I am a grad student at <a href='https://tisch.nyu.edu/itp'>ITP</a> in Brooklyn.<br><br>When I'm not creating weird and cool stuff there, I'm also a game engineer for <a href='https://www.doubleloopgames.com/'>Double Loop Games</a>. I've also worked for Google and NASA JPL, among others. I aam a recent graduate from Yale University with a degree in Computer Science.<br><br>My free time is spent writing science fiction, watching video essays on youtube, and drawing on my iPad.<br><br>Reach out to me via <a href = 'mailto: isabelringing1@gmail.com'>email</a>! Or see my resume <a href='https://drive.google.com/file/d/1LMMG6wkSL7sFzevMYxE7FPuaBgYVlvn7pRfpuAolwaM/view'>here</a>.",
-        "images": ["images/me.jpg"],
-        "image_alt": "A picture of me"
+        "description": "Isabel Lee is a creative technologist, writer, and artist based in Brooklyn.<br><br> Currently, Isabel works as a game engineer at <a href='https://www.doubleloopgames.com/'>Double Loop Games</a>. She is also a Master's candidate at NYU's <a href='https://tisch.nyu.edu/itp'>Interactive Telecommunications Program</a>, and graduated with a degree in Computer Science from Yale University. Her previous experiences inclulde work at Google and NASA Jet Propulsion Laboratory.<br><br><a href = 'mailto: isabelringing1@gmail.com'>Email</a><br><a href='https://drive.google.com/file/1LMMG6wkSL7sFzevMYxE7FPuaBgYVlvn7pRfpuAolwaM/view'>Resume</a>",
+        "images": ["images/me.png"],
+        "image_alt": "A picture of Isabel"
     },
 
     "art_captions": [

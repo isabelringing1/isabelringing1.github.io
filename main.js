@@ -6,8 +6,8 @@ var cardPositions = [];
 var windowWidth;
 
 var cardsPerRow;
-var margin_left = 70;
-var cardContainerMinWidth = 450;
+var margin_left = 40;
+var cardContainerMinWidth = 430;
 var cardContainerHeight = 610;
 
 function getProjectData(){
@@ -101,16 +101,13 @@ function renderCards(){
 
                 if ((i + 1) % cardsPerRow == 0){
                     currX = margin_left;
-                    currY += cardContainerHeight;
+                    currY += mobile ? cardContainerHeight - 30 : cardContainerHeight;
                 }
                 else{
                     currX += cardContainerWidth;
                 }
             }
 
-            $("#about").click(function(){
-                renderProject(-1);
-            });
             $("#logo").click(function(){
                 renderCards();
             });
@@ -128,7 +125,6 @@ window.onhashchange = function() {
 }
 
 window.onresize = function(){
-    console.log(window.location.hash)
     if (window.location.hash === ""){
         windowWidth = $(window).width();
         cardsPerRow = Math.floor((windowWidth- margin_left) / cardContainerMinWidth);
@@ -142,6 +138,10 @@ $(function() {
     if (windowWidth < 631) { configureMobile(); }
     cardsPerRow = Math.floor((windowWidth- margin_left) / cardContainerMinWidth);
     if (cardsPerRow == 0) { cardsPerRow = 1; }
+    $("#about").click(function(){
+        console.log("Rendering about")
+        renderProject(-1);
+    });
     getProjectData().then(() => {
         if (window.location.hash && map.get(window.location.hash) != undefined){
             renderProject(map.get(window.location.hash));
