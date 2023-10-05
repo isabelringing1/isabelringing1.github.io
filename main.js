@@ -125,13 +125,14 @@ window.onhashchange = function() {
 }
 
 window.onresize = function(){
+    windowWidth = $(window).width();
+    if (windowWidth < 631) { configureMobile(); }
     if (window.location.hash === ""){
-        windowWidth = $(window).width();
         cardsPerRow = Math.floor((windowWidth- margin_left) / cardContainerMinWidth);
+        if (cardsPerRow == 0) { cardsPerRow = 1; }
         renderCards();
     }
 }
-
 // On Page Load
 $(function() {
     windowWidth = $(window).width();
