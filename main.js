@@ -32,8 +32,8 @@ $(function() {
     else{
         if (!isSafari){
             setUpPixels();
-            $(".object").css({display: 'none'});
         }
+        $(".object").css({display: 'none'});
         loadProject("landing");
         if (isSafari){
             $("#pixels-fallback")[0].style.display = 'block'; 
