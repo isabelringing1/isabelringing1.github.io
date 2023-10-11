@@ -2,7 +2,7 @@ const express = require('express');
 var path = require("path");
 const app = express();
 
-app.use(express.static(__dirname + "/"));
+app.use(express.static(__dirname));
 
 app.get('/littlelifeupdate', (req, res) => {
     res.sendFile(path.join(__dirname, '/llu/index.html'));
