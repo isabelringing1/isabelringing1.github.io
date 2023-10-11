@@ -120,8 +120,6 @@ function setUpPixels(){
         }); 
     }
 
-    console.log(pixelImages)
-
     pixelImages.get("red").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("red").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("red").yFollow + targetY];
 
     pixelImages.get("green").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("green").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("green").yFollow + targetY];
