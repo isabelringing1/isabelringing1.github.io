@@ -78,6 +78,12 @@ a:hover{
     display: none;
 }
 
+#pixels-fallback{
+    display: none;
+    height: 400px;
+    width: auto;
+}
+
 @keyframes winAnim {
     0% {
         transform: translate(-50%, -50%) scale(1.01);
@@ -221,6 +227,9 @@ a:hover{
         z-index: 2;
     }
     
+    #pixels-fallback{
+        transform: translate(50%, 50%);
+    }
 }
 
 /* mobile */

@@ -8,18 +8,21 @@ var targetX;
 var targetY;
 var mobileCutoff = 768;
 var lastMousePos = [0, 0];
+var isSafari;
 
 // On Page Load
 $(function() {
+    isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     setUpMenu();
 
     $("#exit").on("click", () => {toggleProjectMenu(false)});
     $("#hamburger").on("click", () => {toggleProjectMenu(true)});
-    $(document).mousemove(function(e) {
-        updatePixelImage(e.clientX, e.clientY);
-    });
-
-    console.log("path: " + window.location.pathname)
+    if (!isSafari){
+        $(document).mousemove(function(e) {
+            updatePixelImage(e.clientX, e.clientY);
+        });
+    }
+    
     if (window.location.pathname.length > 1){
         $("#content")[0].style.display = "block";
         var id = window.location.pathname.substring(1) //gets rid of the leading /
@@ -27,9 +30,15 @@ $(function() {
         $("#" + id)[0].style.color = 'rgba(48, 28, 164, 0.8)';
     }
     else{
-        setUpPixels();
-        $(".object").css({display: 'none'});
+        if (!isSafari){
+            setUpPixels();
+            $(".object").css({display: 'none'});
+        }
         loadProject("landing");
+        if (isSafari){
+            $("#pixels-fallback")[0].style.display = 'block'; 
+            $("#pixels-fallback").click((e) => { window.location.href = '/about'; });
+        }
     }
 });
 

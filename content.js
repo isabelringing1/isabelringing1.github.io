@@ -73,7 +73,7 @@ const content = {
             title: "404 Frog",
             category: "etc",
             subtitle: "A froggy mini-game for the web",
-            body: "<img src='/images/frog.gif'/><br><br>A silly little <a src='https://isabellee.me/404frog/' target='_blank'>web experiment</a> that puts you in the body of a frog, catching those pesky flies with your tongue. Made for the <a href='https://itp.nyu.edu/thisisabrokenlink' target='_blank'> NYU ITP 404 Page</a>. (If you refresh enough times, you'll hit it!)",
+            body: "<img src='/images/frog.gif'/><br><br>A silly little <a href='https://isabellee.me/404frog/' target='_blank'>web experiment</a> that puts you in the body of a frog, catching those pesky flies with your tongue. Made for the <a href='https://itp.nyu.edu/thisisabrokenlink' target='_blank'> NYU ITP 404 Page</a>. (If you refresh enough times, you'll hit it!)",
         },
         {
             title: "Sound Garden Playground",
@@ -96,6 +96,6 @@ const content = {
     landing: {
         title: "",
         subtitle: "",
-        body: "<div id='pixel-image-container'><img src='images/red.png' id='red' class='object'><img src='images/green.png' id='green' class='object'><img src='images/blue.png' id='blue' class='object'></div><br><br><div id='enter'>enter ></div>"
+        body: "<div id='pixel-image-container'><img src='images/red.png' id='red' class='object'><img src='images/green.png' id='green' class='object'><img src='images/blue.png' id='blue' class='object'><img src='images/pixel-fallback.png' id='pixels-fallback'></div><br><br><div id='enter'>enter ></div>"
     }
 }
