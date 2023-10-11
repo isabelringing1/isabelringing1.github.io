@@ -4,7 +4,7 @@ const content = {
             title: "little life update",
             category: "web",
             subtitle: "Experimental comic about social media immortality",
-            body: "<a href = 'https://isabellee.me/llu/' target='_blank'>Little Life Update</a> is an interactive web comic made for the ITP course Experiential Comics with Tony Patrick. It's an examination of social media and the ghosts it can induce. <br><br> <img src='/images/llu.png'/><br><br>All art was produced digitally using Procreate and an iPad Pro, while the website was built with Javascript and NodeJS. <br><img class='small-img' src='/images/llu.gif'/><br><br>The comic is best experienced on mobile, but works great on desktop too (use Chrome for best results).",
+            body: "<a src= 'littlelifeupdate' target='_blank'>Little Life Update</a> is an interactive web comic made for the ITP course Experiential Comics with Tony Patrick. It's an examination of social media and the ghosts it can induce. <br><br> <img src='/images/llu.png'/><br><br>All art was produced digitally using Procreate and an iPad Pro, while the website was built with Javascript and NodeJS. <br><img class='small-img' src='/images/llu.gif'/><br><br>The comic is best experienced on mobile, but works great on desktop too (use Chrome for best results).",
         },
         {
             title: "Click",
@@ -73,7 +73,7 @@ const content = {
             title: "404 Frog",
             category: "etc",
             subtitle: "A froggy mini-game for the web",
-            body: "<img src='/images/frog.gif'/><br><br>A silly little <a src='isabellee.me/404frog' target='_blank'>web experiment</a> that puts you in the body of a frog, catching those pesky flies with your tongue. Made for the <a src='https://itp.nyu.edu/thisisabrokenlink' target='_blank'> NYU ITP 404 Page</a>. (If you refresh enough times, you'll hit it!)",
+            body: "<img src='/images/frog.gif'/><br><br>A silly little <a src='404frog' target='_blank'>web experiment</a> that puts you in the body of a frog, catching those pesky flies with your tongue. Made for the <a src='https://itp.nyu.edu/thisisabrokenlink' target='_blank'> NYU ITP 404 Page</a>. (If you refresh enough times, you'll hit it!)",
         },
         {
             title: "Sound Garden Playground",
