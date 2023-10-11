@@ -82,7 +82,9 @@ function loadProject(projectId){
 }
 
 function toggleProjectMenu(show){
-    $(".object")[0].style.mixBlendMode = show ? "overlay" :  "screen";
+    if (window.location.pathname.substring(1) == "landing"){
+        $(".object")[0].style.mixBlendMode = show ? "overlay" : "screen";
+    }
     $("#projects")[0].style.opacity = show ? 1 : 0;
     $("#projects")[0].style.pointerEvents = show ? "auto" : "none";
     $("#content")[0].style.pointerEvents = show ? "none" : "auto";
