@@ -1,161 +1,185 @@
-var data;
-var map;
-var artCaptionMap;
-var mobile = false;
-var cardPositions = [];
-var windowWidth;
 
-var cardsPerRow;
-var margin_left = 40;
-var cardContainerMinWidth = 430;
-var cardContainerHeight = 610;
+var projectDict = {};
+var pixelImages;
+const pixelScalar = 0.3;
+const animSpeed = 30;
+var pixelActive = false;
+var targetX;
+var targetY;
+var mobileCutoff = 768;
+var lastMousePos = [0, 0];
 
-function getProjectData(){
-    return $.getJSON('projects.json', function(jsonData, status, xhr){
-        data = jsonData;
-        map = new Map();
-        artCaptionMap = new Map();
-        for (var i = 0; i < data.projects.length; i++){
-            map.set(data.projects[i].hash, i);
-        }
-        data.projects.sort((a, b) => (a.index < b.index) ? 1 : -1);
-
-        for (var i = 0; i < data.art_captions.length; i++){
-            artCaptionMap.set(data.art_captions[i].link, data.art_captions[i].title);
-        }
-    });
-}
-
-
-function renderProject(projectIndex){
-    $('#project')[0].style.display = "block";
-    $('#cards')[0].style.display = "none";
-
-    var projectData;
-    if (projectIndex == -1){
-        projectData = data.about;
-    }
-    else{
-        projectData = data.projects[data.projects.length - projectIndex - 1];
-    }
-
-    fetch('project.mustache')
-        .then((response) => response.text())
-        .then((template) => {
-            var rendered = Mustache.render(template, projectData);
-            $('#project')[0].innerHTML = rendered;
-            if (projectData.index == 0){
-                configureArt();
-            }
-            if (projectIndex == -1){
-                $("#project-image").attr("title", "pic creds: keaton");
-            }
-        });
-}
-
-function configureArt(){
-    $("#project-image").attr("href", "#art");
-    $("#project-image").removeClass("project-image-link");
-    $("#project-image").addClass("project-image-link-large");
-    $(".image").on('click', function(){
-        $("#modal")[0].style.display = "block";
-        $("#modal-content")[0].src = this.src;
-        $("#modal-caption")[0].innerHTML = artCaptionMap.get(this.src.split("/").at(-1));
-    });
-    $("#modal").on('click', function(){
-        $("#modal")[0].style.display = "none";
-    });
-}
-
-function renderCards(){
-    $('#cards')[0].style.display = "block";
-    $('#project')[0].style.display = "none";
-
-    fetch('cards.mustache')
-        .then((response) => response.text())
-        .then((template) => {
-            var rendered = Mustache.render(template, data);
-            $('#cards')[0].innerHTML = rendered;
-            $('.card').on('click', (event) => {
-                card = event.target;
-                while (card.className != "card-container"){
-                    card = card.parentNode;
-                }
-                renderProject(parseInt(card.id));
-            });
-            var cardContainers = $('.card-container');
-            var cardContainerWidth = (windowWidth - margin_left) / cardsPerRow;
-            var currX = margin_left;
-            var currY = 30;
-            for (var i = 0; i < cardContainers.length; i++){
-                cardContainer = cardContainers[i];
-                if (!mobile){
-                    cardContainer.style.marginLeft = currX + "px";
-                    cardPositions[i] = [currX, currY];
-                }
-                else{
-                    cardContainer.style.marginLeft = (currX/2) + "px";
-                    cardPositions[i] = [currX/2, currY];
-                }
-                cardContainer.style.marginTop = currY + "px";
-
-                if ((i + 1) % cardsPerRow == 0){
-                    currX = margin_left;
-                    currY += mobile ? cardContainerHeight - 30 : cardContainerHeight;
-                }
-                else{
-                    currX += cardContainerWidth;
-                }
-            }
-
-            $("#logo").click(function(){
-                renderCards();
-            });
-        });
-}
-
-window.fadeIn = function(obj) {
-    obj.style.opacity = "1";
-}
-
-window.onhashchange = function() {
-    if (window.location.hash === ""){
-        renderCards();
-    }
-}
-
-window.onresize = function(){
-    windowWidth = $(window).width();
-    if (windowWidth < 631) { configureMobile(); }
-    if (window.location.hash === ""){
-        cardsPerRow = Math.floor((windowWidth- margin_left) / cardContainerMinWidth);
-        if (cardsPerRow == 0) { cardsPerRow = 1; }
-        renderCards();
-    }
-}
 // On Page Load
 $(function() {
-    windowWidth = $(window).width();
-    if (windowWidth < 631) { configureMobile(); }
-    cardsPerRow = Math.floor((windowWidth- margin_left) / cardContainerMinWidth);
-    if (cardsPerRow == 0) { cardsPerRow = 1; }
-    $("#about").click(function(){
-        console.log("Rendering about")
-        renderProject(-1);
+    setUpMenu();
+
+    $("#exit").on("click", () => {toggleProjectMenu(false)});
+    $("#hamburger").on("click", () => {toggleProjectMenu(true)});
+    $(document).mousemove(function(e) {
+        updatePixelImage(e.clientX, e.clientY);
     });
-    getProjectData().then(() => {
-        if (window.location.hash && map.get(window.location.hash) != undefined){
-            renderProject(map.get(window.location.hash));
-        }
-        else if (window.location.hash == "#about"){
-            renderProject(-1);
-        }
-        else{
-            renderCards();
-        }
-    });
+
+    if (window.location.pathname.length > 1){
+        $("#content")[0].style.display = "block";
+        var id = window.location.pathname.substring(1) //gets rid of the leading /
+        loadProject(id); 
+        $("#" + id)[0].style.color = 'rgba(48, 28, 164, 0.8)';
+    }
+    else{
+        setUpPixels();
+        $(".object").css({display: 'none'});
+        loadProject("landing");
+    }
 });
 
-function configureMobile(){
-    mobile = true;
+$(window).load(function() {
+    if (window.innerWidth > mobileCutoff){
+        $("img").click((e) => { if (e.target.id == "logo" || e.target.classList.contains('icon') || e.target.classList.contains('object')) return; toggleImgOverlay(e, true); });
+        $("#overlay").click((e) => { toggleImgOverlay(e, false); });
+    }
+    else{
+        $("#enter,.object").click((e) => { window.location.href = '/about'; });
+    }
+});
+
+function setUpMenu(){
+    for (var i = 0; i < content.projects.length; i++){
+        var categoryDiv = document.getElementById(content.projects[i].category);
+        if (categoryDiv){
+            var subcategory = document.createElement("a");
+            subcategory.classList = "subcategory";
+            var num = categoryDiv.childElementCount;
+            var title = content.projects[i].title;
+            var url = title.replaceAll(" ", "-").replaceAll("'", "").replaceAll("(", "").replaceAll(")", "");
+            subcategory.innerHTML = num + ". " + title + "<br>";
+            subcategory.id = url;
+            subcategory.href = "/" + url;
+            subcategory.title =  content.projects[i].subtitle;
+            projectDict[url] = content.projects[i];
+            categoryDiv.appendChild(subcategory);
+        }
+    }
+    projectDict["about"] = content.about;
+    projectDict["landing"] = content.landing;
+}
+
+function loadProject(projectId){
+    var project = projectDict[projectId];
+
+    $(".title")[0].innerHTML = project.altTitle != undefined ? project.altTitle :  project.title;
+    $(".subtitle")[0].style.display  = project.subtitle ? "block" : "none";
+    $(".subtitle")[0].innerHTML = project.subtitle;
+    $(".body")[0].innerHTML = project.body;
+
+    if (projectId == "landing"){
+        if (window.innerWidth > mobileCutoff){
+            pixelActive = true;
+        }
+    }
+    else{
+        pixelActive = false;
+    }
+}
+
+function toggleProjectMenu(show){
+    $(".object")[0].style.mixBlendMode = show ? "overlay" :  "screen";
+    $("#projects")[0].style.opacity = show ? 1 : 0;
+    $("#projects")[0].style.pointerEvents = show ? "auto" : "none";
+    $("#content")[0].style.pointerEvents = show ? "none" : "auto";
+    $("#logo-container")[0].style.pointerEvents = show ? "none" : "auto";
+}
+
+function toggleImgOverlay(e, show){
+    $("#overlay")[0].style.display = show ? "flex" : "none";
+    $('body')[0].style.overflow = show ? "hidden" : "visible";
+    if (show){
+        $("#overlay")[0].style.marginTop = window.scrollY + "px";
+        $("#overlay-img")[0].src = e.target.src;
+    }
+}
+
+function setUpPixels(){
+    targetX = window.innerWidth / 2;
+    targetY = window.innerHeight / 2;
+    if (pixelImages == null){
+        pixelImages = new Map();
+        pixelImages.set("red", {
+            xFollow: 1.8,
+            yFollow: 0.5
+        });
+        pixelImages.set("green", {
+            xFollow: -0.2,
+            yFollow: -1
+        });
+        pixelImages.set("blue", {
+            xFollow: -1.5,
+            yFollow: 0.8
+        }); 
+    }
+
+    console.log(pixelImages)
+
+    pixelImages.get("red").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("red").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("red").yFollow + targetY];
+
+    pixelImages.get("green").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("green").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("green").yFollow + targetY];
+
+    pixelImages.get("blue").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("blue").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("blue").yFollow + targetY]
+    
+
+    $("#red").css({
+        left: pixelImages.get("red").currentPos[0], 
+        top: pixelImages.get("red").currentPos[1], 
+    });
+
+    $("#green").css({
+        left: pixelImages.get("green").currentPos[0], 
+        top: pixelImages.get("green").currentPos[1], 
+    });
+
+    $("#blue").css({
+        left: pixelImages.get("blue").currentPos[0], 
+        top: pixelImages.get("blue").currentPos[1], 
+    });
+}
+
+function updatePixelImage(x, y){
+    if (!pixelActive){
+        lastMousePos = [x, y];
+        return;
+    }
+    $(".object").css({display: 'flex'});
+    var xDelta = 0;
+    var yDelta = 0;
+    if (lastMousePos != null){
+        xDelta = x - lastMousePos[0];
+        yDelta = y - lastMousePos[1];
+    }
+    for (let [name, obj] of pixelImages) {
+        var newLeft = obj.currentPos[0] + xDelta * obj.xFollow;
+        var newTop = obj.currentPos[1] + yDelta * obj.yFollow;
+
+        $("#" + name).css({
+            left: newLeft,
+            top: newTop,
+        });
+        obj.currentPos = [newLeft, newTop];
+
+        if (closeEnough(newLeft, targetX, 1) && closeEnough(newTop, targetY, 1)){
+            $('#red,#green').addClass("winState");
+            setTimeout(() => {
+                $('#red,#green').removeClass("winState");
+            }, 1000);
+            pixelActive = false;
+            $("#red").css({left: targetX, top: targetY});
+            $("#green").css({left: targetX, top: targetY});
+            $("#blue").css({left: targetX, top: targetY});
+            $(".object").click((e) => { window.location.href = '/about'; });
+            return;
+        }
+    }
+    lastMousePos = [x, y];
+}
+
+function closeEnough(a, b, diff){
+    return Math.abs(a-b) < diff;
 }

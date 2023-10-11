@@ -4,17 +4,10 @@ const app = express();
 
 app.use(express.static(__dirname + "/"));
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-app.get('/littlelifeupdate', (req, res) => {
-    res.sendFile(path.join(__dirname, '/llu/index.html'));
-});
-
-app.get('/404frog', (req, res) => {
-    res.sendFile(path.join(__dirname, '/404\ Page/index.html'));
-});
 
 // Start the server
 const port = process.env.PORT || 4000;
