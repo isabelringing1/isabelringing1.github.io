@@ -41,7 +41,7 @@ const content = {
             title: "Certainty",
             category: "publications",
             subtitle: "Science fiction novelette published in the September 2020 issue of Clarkesworld",
-            body: "<a href='https://clarkesworldmagazine.com/lee_09_20/' target='_blank'>\"Certainity\"</a> is my first science fiction novelette, published in the September 2020 issue of <a href='https://clarkesworldmagazine.com' target='_blank'>Clarkesworld Magazine</a>.<br><br><img class='smaller-img' src='/images/certainty.jpg'/><br><br>It's a story that explores memory and objectivity, and questions what loss and love mean in the face of a fully known universe. <br><br>You can read it online free, or listen to it as a podcast <a href='https://clarkesworldmagazine.com/audio_09_20c/' target='_blank'>here</a>.",
+            body: "<a href='https://clarkesworldmagazine.com/lee_09_20/' target='_blank'>\"Certainity\"</a> is my first science fiction novelette, published in the September 2020 issue of <a href='https://clarkesworldmagazine.com' target='_blank'>Clarkesworld Magazine</a>.<br><br><img class='smaller-img' src='/images/certainty1.jpg'/><br><br>It's a story that explores memory and objectivity, and questions what loss and love mean in the face of a fully known universe. <br><br>You can read it online free, or listen to it as a podcast <a href='https://clarkesworldmagazine.com/audio_09_20c/' target='_blank'>here</a>.",
         },
         {
             title: "55 Plaque",
