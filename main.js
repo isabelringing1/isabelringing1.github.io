@@ -33,11 +33,13 @@ $(function() {
         if (!isSafari){
             setUpPixels();
         }
+
         $(".object").css({display: 'none'});
         loadProject("landing");
         if (isSafari){
             $("#pixels-fallback")[0].style.display = 'block'; 
             $("#pixels-fallback").click((e) => { window.location.href = '/about'; });
+            $(".object").css({display: 'none'});
         }
     }
 });
