@@ -19,6 +19,7 @@ $(function() {
         updatePixelImage(e.clientX, e.clientY);
     });
 
+    console.log("path: " + window.location.pathname)
     if (window.location.pathname.length > 1){
         $("#content")[0].style.display = "block";
         var id = window.location.pathname.substring(1) //gets rid of the leading /
