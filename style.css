@@ -202,7 +202,6 @@ a:hover{
         transition-duration: 200ms;
         transition-timing-function: ease-out;
         transform: translate(-50%, -50%);
-        display: none;
         transform-origin: top left;
     }
 

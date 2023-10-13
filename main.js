@@ -7,7 +7,7 @@ var pixelActive = false;
 var targetX;
 var targetY;
 var mobileCutoff = 768;
-var lastMousePos = [0, 0];
+var lastMousePos;
 var isSafari;
 
 // On Page Load
@@ -30,16 +30,14 @@ $(function() {
         $("#" + id)[0].style.color = 'rgba(48, 28, 164, 0.8)';
     }
     else{
-        if (!isSafari){
-            setUpPixels();
-        }
-
-        $(".object").css({display: 'none'});
         loadProject("landing");
         if (isSafari){
             $("#pixels-fallback")[0].style.display = 'block'; 
             $("#pixels-fallback").click((e) => { window.location.href = '/about'; });
             $(".object").css({display: 'none'});
+        }
+        else{
+            setUpPixels();
         }
     }
 });
@@ -131,35 +129,50 @@ function setUpPixels(){
         }); 
     }
 
-    pixelImages.get("red").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("red").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("red").yFollow + targetY];
-
-    pixelImages.get("green").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("green").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("green").yFollow + targetY];
-
-    pixelImages.get("blue").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("blue").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("blue").yFollow + targetY]
+    if (lastMousePos != null){
+        $("#red").css({
+            left: pixelImages.get("red").currentPos[0], 
+            top: pixelImages.get("red").currentPos[1], 
+        });
     
-
-    $("#red").css({
-        left: pixelImages.get("red").currentPos[0], 
-        top: pixelImages.get("red").currentPos[1], 
-    });
-
-    $("#green").css({
-        left: pixelImages.get("green").currentPos[0], 
-        top: pixelImages.get("green").currentPos[1], 
-    });
-
-    $("#blue").css({
-        left: pixelImages.get("blue").currentPos[0], 
-        top: pixelImages.get("blue").currentPos[1], 
-    });
+        $("#green").css({
+            left: pixelImages.get("green").currentPos[0], 
+            top: pixelImages.get("green").currentPos[1], 
+        });
+    
+        $("#blue").css({
+            left: pixelImages.get("blue").currentPos[0], 
+            top: pixelImages.get("blue").currentPos[1], 
+        });
+    }
+    else{
+        $("#red").css({
+            left: targetX - 50, 
+            top: targetY - 50, 
+        });
+    
+        $("#green").css({
+            left: targetX, 
+            top: targetY + 50, 
+        });
+    
+        $("#blue").css({
+            left: targetX + 80, 
+            top: targetY 
+        });
+    }
 }
 
 function updatePixelImage(x, y){
-    if (!pixelActive){
+    if (!pixelActive || lastMousePos == null){
         lastMousePos = [x, y];
+        pixelImages.get("red").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("red").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("red").yFollow + targetY];
+
+        pixelImages.get("green").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("green").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("green").yFollow + targetY];
+    
+        pixelImages.get("blue").currentPos = [(lastMousePos[0] - targetX) * pixelImages.get("blue").xFollow + targetX, (lastMousePos[1] - targetY) * pixelImages.get("blue").yFollow + targetY]
         return;
     }
-    $(".object").css({display: 'flex'});
     var xDelta = 0;
     var yDelta = 0;
     if (lastMousePos != null){
