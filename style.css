@@ -295,6 +295,10 @@ a:hover{
         width: 100%;
     }
 
+    #projects{
+        z-index: 10;
+    }
+
     .title{
         font-size: 300%;
         text-align: center;
