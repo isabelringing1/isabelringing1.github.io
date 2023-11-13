@@ -26,10 +26,12 @@ $(function() {
     if (window.location.pathname.length > 1){
         $("#content")[0].style.display = "block";
         var id = window.location.pathname.substring(1) //gets rid of the leading /
-        loadProject(id); 
+        loadProject(id);
         $("#" + id)[0].style.color = 'rgba(48, 28, 164, 0.8)';
+        document.title = projectDict[id].altTitle ?? projectDict[id].title;
     }
     else{
+        document.title = "Isabel Lee";
         if (!isSafari){
             setUpPixels();
         }
