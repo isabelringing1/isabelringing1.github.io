@@ -1,6 +1,12 @@
 const content = {
     projects: [
         {
+            title: "The King of Halal",
+            category: "web",
+            subtitle: "Interactive, spatial journalism piece on a long-standing Brooklyn halal cart",
+            body: "<a href= 'https://leey611.github.io/world-of-halal/' target='_blank'>The King of Halal</a> is an interactive article done in collaboration with Joyce Zheng, Yu Lee, and Oliver Zichen Yuan for the ITP course Visual Journalism, taught by Yuliya Parshina-Kottas and Or Fleisher. It features Ayman Zeedan, who has been running a halal cart in Downtown Brooklyn since 2000.<br><br><img class='small-img' src='/images/halal1.gif'/><img class='small-img' src='/images/halal2.gif'/><br><br>Forged from an extensive interview and research process, the article features photo-accurate modeling of Ayman's cart and 360° degree photos of its interior. My personal contributions include writing the article and programming the artice's movement and interaction in React Three Fiber. <br><br><img class='small-img' src='/images/halal3.gif'/><img class='small-img' src='/images/halal4.gif'/><br><br>",
+        },
+        {
             title: "little life update",
             category: "web",
             subtitle: "Experimental comic about social media immortality",
@@ -18,13 +24,13 @@ const content = {
             subtitle: "An interactive examination of evolving female beauty standards through machine learning, computer vision, and classical art",
             body: "<a href='https://our-bodies-are-art.onrender.com' target='_blank'>Our Bodies Are Art</a> is an interactive application where users explore art pieces that match their own body type via computer vision and machine learning, done under advisory of <a href='https://graphics.cs.yale.edu/people/julie-dorsey' target='_blank'>Julie Dorsey</a>. <br><br><img class='big-img' src='/images/obaa.png'/><br><br>The aim of this project is to explore and deconstruct historical female beauty standards through the lens of classical art. A diverse art database of around 50 works was curated from sources like ArtStor, WikiArt, and various Museum databases. Then, the TensorFlow.js library <a href='https://github.com/tensorflow/tfjs-models/tree/master/body-pix target='_blank'>BodyPix</a> was expanded and leveraged to accurately segment the detected bodies in each piece. Finally, a <a src='https://www.researchgate.net/profile/Peter-Yianilos/publication/200019165_Data_Structures_and_Algorithms_for_Nearest_Neighbor_Search_in_General_Metric_Spaces/links/00b7d52fcf2094f81d000000/Data-Structures-and-Algorithms-for-Nearest-Neighbor-Search-in-General-Metric-Spaces.pdf'>Vantage Point Tree</a> was implemented to partition data efficiently in multidimensional space. <br><br><img class='small-img' src='/images/obaa4.png'/><br><br> In the interactive web app, a user's body is captured and then segmented using Body Pix along with user correction. Users are then shown the five closest matches from the art database.<br><br><img class='smaller-img' src='/images/obaa2.png'/>&emsp;<img class='smaller-img' src='/images/obaa3.png'/><br><br><img src= '/images/obaa5.png'/><br><br><b>Our Bodies Are Art</b> acts as my Senior Project for completion of the computer science degree in the Fall of 2020. The project is open source and can be found on <a href='https://github.com/isabelringing1/our-bodies-are-art' target='_blank'>github</a>, while the final report can be read <a href='https://drive.google.com/file/d/1YHNzm82DjMAa5YKwzSeq_hCLjXI5ca97t-K54ABf8Zs/view' target='_blank'>here</a>.",
         },
-        {
+        /*{
             title: "AIIM",
             altTitle: "aiim",
             category: "web",
             subtitle: "Experimental interactive long-form fiction about robots, group chats, and the end of the world",
             body: "<img class='big-img' src='/images/aiim.png'/><br><br><a href='http://aiim.online' target='_blank'>AIIM</a> (Artificial Intelligence Instant Messenger) is a project conceived in Spring 2018 and finished at the end of 2019. The best way to describe it is an experimental interactive long form fiction piece about four AI in the far future, and the only way to really understand it is to jump right in.<br><br>AIIM was truly a labor of love, and I'm still really proud of what it turned into and what it taught me. There's a small <a href='https://tvtropes.org/pmwiki/pmwiki.php/WebOriginal/AIIM' target='_blank'>TV Tropes page</a> for it as well.",
-        },
+        },*/
         {
             title: "Everything Not Saved",
             category: "games",
@@ -56,19 +62,26 @@ const content = {
             body: "<a href = 'http://lunastationquarterly.com/story/your-brothers-touchstone/' target='_blank'>\"Your Brother's Touchstone\"</a> is a short story published in issue #47 of <a href='http://lunastationquarterly.com/' target='_blank'>Luna Station Quarterly</a>, a speculative fiction magazine for women-identifying writers.<br><br><img class='smaller-img' src='/images/ybt.jpeg'/><br><br> It follows two Korean-American siblings, who must learn to depend on each other when caught in a mystery that bends space and time. It is my third published story.<br><br>You can read it online free, or buy a digital copy <a href='https://lunastationpress.gumroad.com/l/lsq-047' target='_blank'>here</a>.<br><br>You can also read an <a href='http://lunastationquarterly.com/issue-047-author-interview-isabel-lee-and-your-brothers-touchstone/' target='_blank'>author interview with me</a>!",
         },
         {
+            title: "Forest Mirror",
+            category: "etc",
+            subtitle: "An interactive installation that reflects ourselves in nature",
+            body: "<img class='bigger-img' src='/images/tree2.png'/><br><br><a href='https://itp.nyu.edu/shows/winter2023/projects/#10532-forest-mirror' target='_blank'>Forest Mirror</a> is an interactive that transforms its participants into forms of nature. Using pose detection, the application sprouts trees in the same pose and position as its users. As more people join in, a small forest will come to life, adapting dynamically to its changing audience.<br><br><img class='bigger-img' src='/images/tree1.gif'/><br><br>This project acts as both a reflection of its participants and a gentle reminder of our place in nature. It is built using React Three Fiber and Tensorflow’s PoseNet model, and was showcased at the ITP Winter Show 2023.<br><br><img src='/images/tree3.gif'/>",
+        },
+        {
             title: "To the Moon (pop-up book)",
             altTitle: "To the Moon",
             category: "etc",
             subtitle: "A handcrafted pop-up book about a girl with astronomical dreams",
             body: "<img src='/images/ttm.gif'/><br><br>To the Moon was a cumulation of skills learned in the NYU ITP course Paper Engineering, taught by Samuel Ida. It transforms from its original book form into a 3D polyptych of scenes from a girl's life, as she pursues her dream to become an astronout. Magnets hold the book together as it stands. <br><br><img class='small-img' src='/images/ttm1.jpg'/><img class='small-img' src='/images/ttm2.jpg'/><br><img class='small-img' src='/images/ttm3.jpg'/><img class='small-img' src='/images/ttm4.jpg'/><br><br>I drew inspiration from my own upbringiyng, and my high interest in astronomy and space science. <br><br><img class='small-img' src='/images/ttmcu1.jpg'/><img class='small-img' src='/images/ttmcu2.jpg'/><br><img class='small-img' src='/images/ttmcu4.jpg'/><img class='small-img' src='/images/ttmcu3.jpg'/>",
         },
+        /*
         {
             title: "Intro to Fabrication Portfolio",
             altTitle: "Intro to Fabrication",
             category: "etc",
             subtitle: "A family of objects inspired by the cosmos",
             body: "<img class='bigger-img' src='/images/itf1.png'/><br><br>Items designed and fabricated for the NYU ITP course Intro to Fabrication, completed in Spring 2023.<br><br><img class='smaller-img' src='/images/itf2.png'/>&emsp;<img class='smaller-img' src='/images/itf3.png'/><br><br><img class='smaller-img' src='/images/itf4.png'/>&emsp;<img class='smaller-img' src='/images/itf5.png'/><br><br><img class='smaller-img' src='/images/itf7.png'/>",
-        },
+        },*/
         {
             title: "404 Frog",
             category: "etc",

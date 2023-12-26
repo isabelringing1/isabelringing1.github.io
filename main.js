@@ -200,7 +200,10 @@ function updatePixelImage(x, y){
             $("#red").css({left: targetX, top: targetY});
             $("#green").css({left: targetX, top: targetY});
             $("#blue").css({left: targetX, top: targetY});
-            $(".object").click((e) => { window.location.href = '/about'; });
+            setTimeout(()=> {
+                window.location.href = '/about';
+            }, 850);
+            
             return;
         }
     }

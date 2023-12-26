@@ -150,7 +150,7 @@ a:hover{
     .title{
       font-size: 500%;  
       line-height: 1.2;
-      padding: 4%;
+      padding: 3%;
     }
 
     .subtitle{
@@ -182,6 +182,11 @@ a:hover{
 
     .smaller-img{
         width: 34%;
+    }
+
+    .bigger-img{
+        width: 80%;
+        height: auto;
     }
 
     .big-img{
