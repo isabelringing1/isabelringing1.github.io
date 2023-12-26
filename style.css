@@ -272,6 +272,7 @@ a:hover{
         background-color: rgb(255, 255, 255, 0.85);
         font-size: 150%;
         transition: opacity 0.2s ease-in-out;
+        overflow: auto;
     }
 
     .category{
