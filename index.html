@@ -1,79 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-     <!-- Start Single Page Apps for GitHub Pages -->
-     <script type="text/javascript">
-        // Single Page Apps for GitHub Pages
-        // MIT License
-        // https://github.com/rafgraph/spa-github-pages
-        // This script checks to see if a redirect is present in the query string,
-        // converts it back into the correct url and adds it to the
-        // browser's history using window.history.replaceState(...),
-        // which won't cause the browser to attempt to load the new url.
-        // When the single page app is loaded further down in this file,
-        // the correct url will be waiting in the browser's history for
-        // the single page app to route accordingly.
-        (function(l) {
-          if (l.search[1] === '/' ) {
-            var decoded = l.search.slice(1).split('&').map(function(s) { 
-              return s.replace(/~and~/g, '&')
-            }).join('?');
-            window.history.replaceState(null, null,
-                l.pathname.slice(0, -1) + decoded + l.hash
-            );
-          }
-        }(window.location))
-      </script>
-      <!-- End Single Page Apps for GitHub Pages -->
+  <!-- Start Single Page Apps for GitHub Pages -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    (function (l) {
+      if (l.search[1] === "/") {
+        var decoded = l.search
+          .slice(1)
+          .split("&")
+          .map(function (s) {
+            return s.replace(/~and~/g, "&");
+          })
+          .join("?");
+        window.history.replaceState(
+          null,
+          null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    })(window.location);
+  </script>
+  <!-- End Single Page Apps for GitHub Pages -->
 
-    <head>
-        <title>Isabel Lee</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script async src="https://ga.jspm.io/npm:es-module-shims@1.8.0/dist/es-module-shims.js"></script>
-        <script src="content.js"></script>
-        <script src="main.js"></script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/png" href="/images/favicon.ico">
-    </head>
+  <head>
+    <title>Isabel Lee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script
+      async
+      src="https://ga.jspm.io/npm:es-module-shims@1.8.0/dist/es-module-shims.js"
+    ></script>
+    <script src="content.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="/images/favicon.ico" />
+  </head>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZEXLRPWHP"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-PZEXLRPWHP"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-        gtag('config', 'G-PZEXLRPWHP');
-    </script>
+    gtag("config", "G-PZEXLRPWHP");
+  </script>
 
-    <body>
-        <div id="overlay"><img id="overlay-img"/></div>
-        <div id="hamburger-container"><div id="hamburger">\\\</div></div>
-        <div id="menu">
-            <a href="/" id="logo-container"><img id="logo" src="images/logo.png"/></a>
-            <div id="projects">
-                <div id="exit">X</div>
-                <div id="about" class="category">
-                    <div class="category-title"><a href="/about">About</a></div>
-                </div>
-                <div id="web" class="category">
-                    <div class="category-title">Web</div>
-                </div>
-                <div id="games" class="category">
-                    <div class="category-title">Games</div>
-                </div>
-                <div id="publications" class="category">
-                    <div class="category-title">Publications</div>
-                </div>
-                <div id="etc" class="category">
-                    <div class="category-title">Etc</div>
-                </div>
-            </div>
+  <body>
+    <div id="overlay"><img id="overlay-img" /></div>
+    <div id="hamburger-container"><div id="hamburger">\\\</div></div>
+    <div id="menu">
+      <a href="/" id="logo-container"
+        ><img id="logo" src="images/logo.png"
+      /></a>
+      <div id="projects">
+        <div id="exit">X</div>
+        <div id="about" class="category">
+          <div class="category-title"><a href="/about">About</a></div>
         </div>
-        <div id="content">
-            <div class="title"></div>
-            <div class="subtitle"></div>
-            <div class="body"></div>
+        <div id="games" class="category">
+          <div class="category-title">Games</div>
         </div>
-    </body>
+        <div id="web" class="category">
+          <div class="category-title">Web</div>
+        </div>
+        <div id="publications" class="category">
+          <div class="category-title">Writing</div>
+        </div>
+        <div id="etc" class="category">
+          <div class="category-title">Etc</div>
+        </div>
+      </div>
+    </div>
+    <div id="content">
+      <div class="title"></div>
+      <div class="subtitle"></div>
+      <div class="body"></div>
+    </div>
+  </body>
 </html>
