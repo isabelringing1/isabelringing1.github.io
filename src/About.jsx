@@ -20,7 +20,7 @@ export default function About(props) {
       <div>
         <a
           className="about-text faded"
-          href="https://isabisabel.com/"
+          href="https://isabellee.me/"
           target="_blank"
         >
           portfolio
