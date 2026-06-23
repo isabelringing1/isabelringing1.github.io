@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: readex-pro;
-  src: url("ReadexPro-Bold.ttf");
+  src: url("ReadexPro-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
