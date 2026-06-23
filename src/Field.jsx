@@ -7,6 +7,8 @@ export default function Field(props) {
     grassMotion,
     showAbout,
     showMobileView,
+    blogMode,
+    onBlogIndex,
   } = props;
   const fieldRef = useRef(null);
   const bladesRef = useRef([]);
@@ -17,6 +19,31 @@ export default function Field(props) {
 
   const PUSH_RADIUS = 150;
   const VARIANCE = 60;
+
+  const hideBlogAreaGrass = () => {
+    if (!blogMode) return;
+
+    var blogWidth = 0;
+    if (showMobileView){
+      blogWidth = onBlogIndex ? 0 : window.innerWidth * 0.8;
+    }
+    else{
+      if (window.innerWidth > 1400){
+        blogWidth = window.innerWidth * 0.45;
+      }
+      else{
+        blogWidth = window.innerWidth * 0.6;
+      }
+    }
+    const blogLeft = (window.innerWidth - blogWidth) / 2;
+    const blogRight = blogLeft + blogWidth;
+
+    bladesRef.current.forEach((b) => {
+      if (b.x >= blogLeft && b.x <= blogRight) {
+        b.el.classList.add("hide");
+      }
+    });
+  };
 
   const makeField = () => {
     const field = fieldRef.current;
@@ -82,6 +109,10 @@ export default function Field(props) {
         bladesRef.current.push(bladeObj);
         field.appendChild(blade);
       }
+    }
+
+    if (blogMode) {
+      requestAnimationFrame(hideBlogAreaGrass);
     }
   };
 
@@ -180,6 +211,8 @@ export default function Field(props) {
   }, [grassMotion]);
 
   useEffect(() => {
+    if (blogMode) return;
+
     for (let i = 0; i < blades_per_column; i++) {
       for (let j = 0; j < blades_per_row; j++) {
         const blade = document.getElementById("blade-" + i + "-" + j);
@@ -201,7 +234,7 @@ export default function Field(props) {
           }
       }
     }
-  }, [showAbout]);
+  }, [showAbout, blogMode]);
 
   return <div className="grass-field" ref={fieldRef}></div>;
 }

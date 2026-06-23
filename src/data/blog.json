@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": "number-gacha",
+      "title": "Making Number Gacha",
+      "subtitle": "Does a gacha game still work without its sexy anime girls?",
+      "date": "2025-06-19",
+      "card-image": "/gacha-blog.png",
+      "body": [
+        "<img src=\"/gacha.gif\" />",
+        "Last month I released <a href=\"https://isabisabel.com/gacha\" target=\"_blank\">Number Gacha</a>, a game where you roll, unpack, and battle numbers. Thank you to everyone who’s played! In my inaugural blog post, I wanted to look back on the project that has consumed the last six months of my life and figure out why it’s struck such a chord.",
+        "<h1>What Makes a Game Fun?</h1>",
+        "Let’s take a step back and start with this question. Is it slowly mastering a skill, or a satisfying progression of power? Is it a well-written, emotional story? Is it the thrill of shooting that last annoying enemy in the face?",
+        "These things are all fun— of course they are. These things are all fun— of course they are. But lately, I’ve been drawn to a different kind of engagement, one that feels <i>cheaper</i>. Games that include virtual roulette wheels or shiny loot boxes, where every rare item I get triggers a hit of dopamine in my brain. Why is something so crudely stimulating, such thinly veiled gambling, just as fun to me as a “real game” Why is something so crudely stimulating, such <b>thinly veiled gambling</b>, just as fun to me as a “real game”?",
+        "<img src=\"/gacha-blog-stimulation.png\" />",
+        "It feels akin to doomscrolling, trying to rack up as much stimulation as possible to keep my brain happy and sedated. Perversely, it actually started to make sense. I’m tired after a long day, or want to take a break from working and need something fast and quick. Why work for my fun through difficult, rewarding gaming when it can be served to me by a single click?",
+        "And thus <b>Number Gacha</b> was born."
+        
+      ]
+    }
+  ]
+}
