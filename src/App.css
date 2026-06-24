@@ -418,6 +418,29 @@ body.blog-page {
   pointer-events: all;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.45) transparent;
+}
+
+.blog-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.blog-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.blog-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+}
+
+.blog-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.blog-scroll::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .blog-fade-in {
@@ -435,15 +458,14 @@ body.blog-page {
 
 .blog-page-title {
   color: white;
-  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.4));
   font-size: 5vh;
   text-align: center;
-  margin: 0 0 1vh;
+  margin: 4dvh 0 1vh;
 }
 
 .subtitle {
   font-size: 2.8vh;
-  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.2));
+  margin-top: 1dvh;
 }
 
 .blog-card-list {
@@ -525,7 +547,36 @@ body.blog-page {
   display: block;
   width: 100%;
   border-radius: .2vh;
+  margin: 0;
+}
+
+.half-image {
+  width: 100%;
+}
+
+.blog-body-figure {
   margin: 0 0 2vh;
+}
+
+.blog-body-figure-row {
+  display: flex;
+  gap: 2%;
+  align-items: center;
+  margin: 0 0 2vh;
+}
+
+.blog-body-figure-row .blog-body-figure {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+.blog-body-caption {
+  margin-top: 1vh;
+  font-size: 1.7vh;
+  color: #c2ffb7;
+  text-align: center;
+  line-height: 1.4;
 }
 
 .blog-body-link {
@@ -540,12 +591,17 @@ body.blog-page {
   font-weight: 700;
 }
 
+.blog-body-italic {
+  font-style: italic;
+}
+
 .blog-body-heading {
   color: #c2ffb7;
   margin: 3vh 0 1.5vh;
 }
 
 .blog-body-h1 {
+  font-weight: 400;
   font-size: 3.5vh;
 }
 

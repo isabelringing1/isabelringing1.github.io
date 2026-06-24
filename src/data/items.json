@@ -1,6 +1,14 @@
 {
   "items": [
     {
+      "id": "gacha",
+      "title": "Number Gacha",
+      "desc": "A gacha game distilled to its essence.",
+      "path": "/gacha.png",
+      "gif": "/gacha.gif",
+      "url": "https://isabisabel.com/gacha"
+    },
+    {
       "id": "jelly-beans",
       "title": "Your Life in Jelly Beans",
       "desc": "How many days do you have left? Why don't you guess?",
@@ -42,14 +50,6 @@
       "gif": "/click.gif",
       "url": "https://clickinto.place",
       "tags": ["desktop"]
-    },
-    {
-      "id": "gacha",
-      "title": "Number Gacha",
-      "desc": "A gacha game distilled to its essence.",
-      "path": "/gacha.png",
-      "gif": "/gacha.gif",
-      "url": "https://isabisabel.com/gacha"
     }
   ]
 }

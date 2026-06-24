@@ -21,21 +21,55 @@ function parseInlineStyle(styleString) {
   );
 }
 
-function parseImgTag(content) {
-  const trimmed = content.trim();
-  if (!/^<img\b/i.test(trimmed)) return null;
-
-  const img = new DOMParser()
-    .parseFromString(trimmed, "text/html")
-    .querySelector("img");
-
-  if (!img) return null;
-
+function parseImgFromElement(img) {
   return {
     src: img.getAttribute("src"),
     alt: img.getAttribute("alt") || "",
+    className: img.getAttribute("class") || img.getAttribute("className") || "",
     style: parseInlineStyle(img.getAttribute("style")),
   };
+}
+
+function parseImgTags(content) {
+  const trimmed = content.trim();
+  if (!/<img\b/i.test(trimmed)) return null;
+
+  const container = new DOMParser()
+    .parseFromString(`<div>${trimmed}</div>`, "text/html")
+    .body.firstChild;
+
+  const images = Array.from(container.querySelectorAll("img"));
+  if (images.length === 0) return null;
+
+  const isImageOnly = Array.from(container.childNodes).every(
+    (node) =>
+      (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) ||
+      node.nodeName === "IMG"
+  );
+
+  if (!isImageOnly) return null;
+
+  return images.map(parseImgFromElement);
+}
+
+function renderImage(image, key) {
+  const imageClassName = ["blog-body-image", image.className]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <figure key={key} className="blog-body-figure">
+      <img
+        className={imageClassName}
+        src={image.src}
+        alt={image.alt}
+        style={image.style}
+      />
+      {image.alt && (
+        <figcaption className="blog-body-caption">{image.alt}</figcaption>
+      )}
+    </figure>
+  );
 }
 
 function parseLinkTag(content) {
@@ -90,6 +124,22 @@ function parseBoldTag(content) {
   };
 }
 
+function parseItalicTag(content) {
+  const trimmed = content.trim();
+  if (!/^<(i|em)\b/i.test(trimmed)) return null;
+
+  const italic = new DOMParser()
+    .parseFromString(trimmed, "text/html")
+    .querySelector("i,em");
+
+  if (!italic) return null;
+
+  return {
+    innerHTML: italic.innerHTML,
+    style: parseInlineStyle(italic.getAttribute("style")),
+  };
+}
+
 function renderNode(node, key) {
   if (node.nodeType === Node.TEXT_NODE) {
     return node.textContent;
@@ -102,6 +152,14 @@ function renderNode(node, key) {
       <strong key={key} className="blog-body-bold" style={style}>
         {Array.from(node.childNodes).map((child, i) => renderNode(child, i))}
       </strong>
+    );
+  }
+
+  if (node.nodeName === "I" || node.nodeName === "EM") {
+    return (
+      <em key={key} className="blog-body-italic" style={style}>
+        {Array.from(node.childNodes).map((child, i) => renderNode(child, i))}
+      </em>
     );
   }
 
@@ -124,7 +182,7 @@ function renderNode(node, key) {
 }
 
 function renderInlineNodes(content) {
-  if (!/<(a|b|strong)\b/i.test(content)) return content;
+  if (!/<(a|b|strong|i|em)\b/i.test(content)) return content;
 
   const container = new DOMParser()
     .parseFromString(`<div>${content}</div>`, "text/html")
@@ -134,16 +192,17 @@ function renderInlineNodes(content) {
 }
 
 export default function BlogBodyItem({ content }) {
-  const image = parseImgTag(content);
+  const images = parseImgTags(content);
 
-  if (image?.src) {
+  if (images?.length) {
+    if (images.length === 1) {
+      return renderImage(images[0], 0);
+    }
+
     return (
-      <img
-        className="blog-body-image"
-        src={image.src}
-        alt={image.alt}
-        style={{ width: "100%", ...image.style }}
-      />
+      <div className="blog-body-figure-row">
+        {images.map((image, i) => renderImage(image, i))}
+      </div>
     );
   }
 
@@ -188,6 +247,18 @@ export default function BlogBodyItem({ content }) {
         <strong className="blog-body-bold" style={bold.style}>
           {renderInlineNodes(bold.innerHTML)}
         </strong>
+      </p>
+    );
+  }
+
+  const italic = parseItalicTag(content);
+
+  if (italic) {
+    return (
+      <p>
+        <em className="blog-body-italic" style={italic.style}>
+          {renderInlineNodes(italic.innerHTML)}
+        </em>
       </p>
     );
   }
