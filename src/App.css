@@ -166,7 +166,7 @@ body {
 
   #about {
     z-index: 10000000;
-    padding-bottom: 5vh;
+    padding-bottom: 3vh;
   }
 
   .about-text {
@@ -636,6 +636,12 @@ body.blog-page {
 .blog-back-link:hover {
   text-decoration: underline;
 }
+
+.kofi {
+  margin-top: 3dvh;
+  height: 48px;
+}
+
 
 @media (max-width: 1400px) {
   .blog-scroll {

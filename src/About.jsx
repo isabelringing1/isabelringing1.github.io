@@ -34,6 +34,8 @@ export default function About(props) {
           contact
         </a>
       </div>
+      <a href='https://ko-fi.com/S7Y821QGLQ' target='_blank' >
+        <img className="kofi" src='./kofi3.png' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
     </div>
   );
 }
