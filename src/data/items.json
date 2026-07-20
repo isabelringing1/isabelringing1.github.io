@@ -1,6 +1,14 @@
 {
   "items": [
     {
+      "id": "name-a-woman",
+      "title": "Name a Woman",
+      "desc": "Can you name more women or Pokémon in 3 minutes?",
+      "path": "/girl1.png",
+      "gif": "/name-a-woman.gif",
+      "url": "https://isabisabel.com/name-a-woman"
+    },
+    {
       "id": "gacha",
       "title": "Number Gacha",
       "desc": "A gacha game distilled to its essence.",
@@ -31,15 +39,6 @@
       "path": "/bread.png",
       "gif": "/bread.gif",
       "url": "https://breadwinner.app",
-      "tags": ["desktop"]
-    },
-    {
-      "id": "clickipedia",
-      "title": "Clickipedia",
-      "desc": "Can you open every article on Wikipedia and achieve enlightenment?",
-      "path": "/wiki.png",
-      "gif": "/clickipedia.gif",
-      "url": "https://isabisabel.com/clickipedia",
       "tags": ["desktop"]
     },
     {
