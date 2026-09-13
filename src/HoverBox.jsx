@@ -33,7 +33,7 @@ export default function Hoverbox(props) {
             <div className="hoverbox-title">{data.item.title}</div>
             <div className="hoverbox-gif-div">
               <img
-                className="hoverbox-gif"
+                className={"hoverbox-gif " + (data.item.vertical ? "gif-vertical" : "")}
                 src={window.location.origin + data.item.gif}
               />
             </div>

@@ -13,7 +13,7 @@ export default function Field(props) {
   const fieldRef = useRef(null);
   const bladesRef = useRef([]);
   const grassMotionRef = useRef(true);
-  var allImagesLoadedRef = useRef(false);
+  const viewportWidthRef = useRef(window.innerWidth);
 
   const numBetween = (num, lower, higher) => num > lower && num < higher;
 
@@ -81,10 +81,6 @@ export default function Field(props) {
         blade.style.left = x + "px";
         blade.style.top = y + "px";
         blade.style.zIndex = i * blades_per_row + j;
-        if (showMobileView && !allImagesLoadedRef.current) {
-          blade.style.zIndex = 0;
-        }
-
         if (numBetween(j, 10 - i / 2, 30 - i / 2) && numBetween(i, 0, 50)) {
           if (Math.random() * 10 < 8) {
             blade.className += " style-1";
@@ -169,28 +165,22 @@ export default function Field(props) {
     requestAnimationFrame(animate);
   }
 
-  if (showMobileView) {
-    Promise.all(
-      Array.from(document.images)
-        .filter((img) => !img.complete)
-        .map(
-          (img) =>
-            new Promise((resolve) => {
-              img.onload = img.onerror = resolve;
-            })
-        )
-    ).then(() => {
-      allImagesLoadedRef.current = true;
-      makeField();
-    });
-  }
-
   useEffect(() => {
     makeField();
     // Mouse interaction
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", makeField);
+    const handleResize = () => {
+      // Mobile Safari changes the viewport height whenever its browser chrome
+      // opens or closes. Rebuilding here randomized every blade after scrolling.
+      if (window.innerWidth === viewportWidthRef.current) {
+        return;
+      }
+
+      viewportWidthRef.current = window.innerWidth;
+      makeField();
+    };
+    window.addEventListener("resize", handleResize);
 
     // Idle ripple (batched)
 
@@ -198,6 +188,7 @@ export default function Field(props) {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

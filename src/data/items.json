@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "id": "phone-cigarette",
+      "title": "Phone Cigarette",
+      "desc": "Doomscrolling simulator for getting your dopamine fix.",
+      "path": "/cigarette.png",
+      "gif": "/cigarette.gif",
+      "url": "https://isabisabel.com/phone-cigarette",
+      "tags": ["mobile"],
+      "vertical": true
+    },
+    {
       "id": "name-a-woman",
       "title": "Name a Woman",
       "desc": "Can you name more women or Pokémon in 3 minutes?",

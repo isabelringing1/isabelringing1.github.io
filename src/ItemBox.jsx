@@ -47,7 +47,7 @@ export default function ItemBox(props) {
       </div>
       <div className="hoverbox-gif-div">
         <img
-          className="hoverbox-gif"
+          className={"hoverbox-gif " + (item.vertical ? "gif-vertical" : "")}
           src={window.location.origin + item.gif}
           onLoad={setZIndex}
         />

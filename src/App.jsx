@@ -56,6 +56,8 @@ function App() {
     switch (tag) {
       case "desktop":
         return "DESKTOP ONLY";
+      case "mobile":
+        return "MOBILE ONLY";
       case "dev":
         return "IN DEVELOPMENT";
     }
